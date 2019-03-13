@@ -26,12 +26,15 @@ class login extends Component {
     }
 
     login = () => {
-        const { username, password } = this.state;
-        const { setAccessToken } = this.props;
-        setAccessToken('H)D)*HD)SH)(*SDH)F*HSDFDSDISIUSDHSDHFIUSDHF&*F(D&*S^FDF');
 
-        Actions.reset('auth');
-        Actions.private();
+        alert('Not Implemented Yet! Working on it!');
+
+        // const { username, password } = this.state;
+        // const { setAccessToken } = this.props;
+        // setAccessToken('H)D)*HD)SH)(*SDH)F*HSDFDSDISIUSDHSDHFIUSDHF&*F(D&*S^FDF');
+
+        // Actions.reset('auth');
+        // Actions.private();
     }
 
     render() {

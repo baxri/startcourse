@@ -28,9 +28,8 @@ export default class ForgotPassword extends Component {
 
         return (
             <PublicContainer>
-                <Header />
                 <Content>
-
+                    <Header />
                     <View style={styles.formContainer}>
                         <Item style={styles.inputItem}>
                             <Icon active name='user' type="AntDesign" />
