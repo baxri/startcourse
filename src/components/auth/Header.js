@@ -9,11 +9,12 @@ class Header extends Component {
 
         return (
             <View style={styles.logoContainer}>
-                <ImageBackground style={styles.logo}
+                <ImageBackground style={styles.logo} fadeDuration={0}
                     source={require('../../resources/images/road.jpeg')} >
                     <Image style={styles.image} source={require('../../resources/images/brand/title_outlined.png')} ></Image>
                 </ImageBackground>
             </View>
+
         )
     }
 }

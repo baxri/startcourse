@@ -65,12 +65,6 @@ class login extends Component {
                             <Input secureTextEntry={true} placeholder='Password' value={password}
                                    onChangeText={(val) => this.handleChange('password', val)}/>
                         </Item>
-
-                        <Element
-                            title="Solid Button"
-                            loading
-                        />
-
                         <Button primary block style={styles.button} onPress={this.login}>
                             <Text style={styles.buttonText}>Log In</Text>
                         </Button>
