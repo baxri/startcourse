@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, Dimensions, KeyboardAvoidingView } from 'react-native'
 import { Container, Content } from "native-base";
-
+import FlashMessage, {showMessage} from "react-native-flash-message";
 
 export default class PublicContainer extends Component {
 
@@ -26,6 +26,7 @@ export default class PublicContainer extends Component {
                 <KeyboardAvoidingView behavior="padding" style={styles.avoidKeyBoard}>
                     {children}
                 </KeyboardAvoidingView>
+                <FlashMessage position="top" />
             </Container >
         )
     }

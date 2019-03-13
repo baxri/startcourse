@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, KeyboardAvoidingView } from 'react-native'
-import { Image, ImageBackground } from 'react-native';
+import React, {Component} from 'react'
+import {StyleSheet, View, KeyboardAvoidingView} from 'react-native'
+import {Image, ImageBackground, Alert} from 'react-native';
 import PublicContainer from "../../layouts/PublicContainer";
-import { Content, Item, Input, Icon, Button, Text } from 'native-base';
-import { Actions } from "react-native-router-flux";
-import { connect } from "react-redux";
-import { setAccessToken } from "../../actions/index";
-import { Ionicons } from '@expo/vector-icons';
+import {Content, Item, Input, Icon, Button, Text} from 'native-base';
+import {Actions} from "react-native-router-flux";
+import {connect} from "react-redux";
+import {setAccessToken} from "../../actions/index";
+import {Ionicons} from '@expo/vector-icons';
+import FlashMessage, {showMessage} from "react-native-flash-message";
 
 import Header from "../../components/auth/Header";
+import Error from "../../components/modals/Error";
 
 class login extends Component {
 
@@ -22,12 +24,19 @@ class login extends Component {
     }
 
     handleChange = (name, value) => {
-        this.setState({ [name]: value });
+        this.setState({[name]: value});
     }
 
     login = () => {
 
-        alert('Not Implemented Yet! Working on it!');
+        // Actions.error();
+
+        // Alert.alert("Invalid Credetials!");
+
+        showMessage({
+            message: "Simple message",
+            type: "danger",
+        });
 
         // const { username, password } = this.state;
         // const { setAccessToken } = this.props;
@@ -39,19 +48,21 @@ class login extends Component {
 
     render() {
 
-        const { username, password } = this.state;
+        const {username, password} = this.state;
         return (
             <PublicContainer>
-                <Header />
+                <Header/>
                 <Content>
                     <View style={styles.formContainer}>
                         <Item style={styles.inputItem}>
-                            <Icon active name='user' type="AntDesign" />
-                            <Input placeholder='Email Address' value={username} onChangeText={(val) => this.handleChange('username', val)} />
+                            <Icon active name='user' type="AntDesign"/>
+                            <Input placeholder='Email Address' value={username}
+                                   onChangeText={(val) => this.handleChange('username', val)}/>
                         </Item>
                         <Item style={styles.inputItem}>
-                            <Icon active name='lock' type="AntDesign" />
-                            <Input secureTextEntry={true} placeholder='Password' value={password} onChangeText={(val) => this.handleChange('password', val)} />
+                            <Icon active name='lock' type="AntDesign"/>
+                            <Input secureTextEntry={true} placeholder='Password' value={password}
+                                   onChangeText={(val) => this.handleChange('password', val)}/>
                         </Item>
 
                         <Button primary block style={styles.button} onPress={this.login}>
@@ -120,4 +131,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default connect(null, { setAccessToken })(login);
+export default connect(null, {setAccessToken})(login);
