@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {setAccessToken} from "../../actions/index";
 import {Ionicons} from '@expo/vector-icons';
 import FlashMessage, {showMessage} from "react-native-flash-message";
+import { Button as Element } from 'react-native-elements';
 
 import Header from "../../components/auth/Header";
 import Error from "../../components/modals/Error";
@@ -64,6 +65,11 @@ class login extends Component {
                             <Input secureTextEntry={true} placeholder='Password' value={password}
                                    onChangeText={(val) => this.handleChange('password', val)}/>
                         </Item>
+
+                        <Element
+                            title="Solid Button"
+                            loading
+                        />
 
                         <Button primary block style={styles.button} onPress={this.login}>
                             <Text style={styles.buttonText}>Log In</Text>
