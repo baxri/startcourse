@@ -12,6 +12,7 @@ const RouterWithRedux = connect()(Router);
 // Screens
 import login from "./src/screens/auth/login";
 import register from "./src/screens/auth/register";
+import forgotpassword from "./src/screens/auth/forgotpassword";
 import dashboard from "./src/screens/dashboard";
 
 export default class App extends React.Component {
@@ -46,8 +47,9 @@ export default class App extends React.Component {
 
             {/* Login Stack */}
             <Stack key="auth" type="reset" hideNavBar={true}>
-              <Scene key="login" init component={login} title="login" />
+              <Scene key="login" initial component={login} title="login" />
               <Scene key="register" component={register} title="register" />
+              <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
             </Stack>
 
             {/* Authorized Private Stack */}
