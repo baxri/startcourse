@@ -16,6 +16,12 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "ios": {
+      "bundleIdentifier": "com.nvgroupllc.starcourse"
+    },
+    "android": {
+      "package": "com.nvgroupllc.starcourse"
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -26,5 +32,6 @@
       "supportsTablet": true
     },
     "description": "StarCourse provided in expo is for testing purposes for the client. just try and enjoy with a coffee :)"
-  }
+  },
+
 }
