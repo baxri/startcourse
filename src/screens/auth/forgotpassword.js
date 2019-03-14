@@ -32,8 +32,8 @@ export default class ForgotPassword extends Component {
                     <Header />
                     <View style={styles.formContainer}>
                         <Item style={styles.inputItem}>
-                            <Icon active name='user' type="AntDesign" />
-                            <Input placeholder='Email Address' value={username} onChangeText={(val) => this.handleChange('username', val)} />
+                            <Icon active name='user' type="FontAwesome" />
+                            <Input style={styles.input} placeholder='Email Address' value={username} onChangeText={(val) => this.handleChange('username', val)} />
                         </Item>
                     </View>
                 </Content>
@@ -52,17 +52,22 @@ export default class ForgotPassword extends Component {
 
 const styles = StyleSheet.create({
     formContainer: {
+        paddingHorizontal: 30,
         flex: 1,
         padding: 15,
     },
 
     inputItem: {
         paddingVertical: 10,
+        borderBottomColor: '#2e3131',
     },
 
     buttonText: {
         color: 'white',
-        fontWeight: 'bold',
-        fontSize: 17,
+        fontSize: 14,
     },
+
+    input: {
+        fontSize: 14,
+    }
 })

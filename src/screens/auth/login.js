@@ -1,13 +1,13 @@
-import React, {Component} from 'react'
-import {StyleSheet, View, KeyboardAvoidingView} from 'react-native'
-import {Image, ImageBackground, Alert} from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, View, KeyboardAvoidingView } from 'react-native'
+import { Image, ImageBackground, Alert } from 'react-native';
 import PublicContainer from "../../layouts/PublicContainer";
-import {Content, Item, Input, Icon, Button, Text} from 'native-base';
-import {Actions} from "react-native-router-flux";
-import {connect} from "react-redux";
-import {setAccessToken} from "../../actions/index";
-import {Ionicons} from '@expo/vector-icons';
-import FlashMessage, {showMessage} from "react-native-flash-message";
+import { Content, Item, Input, Icon, Button, Text } from 'native-base';
+import { Actions } from "react-native-router-flux";
+import { connect } from "react-redux";
+import { setAccessToken } from "../../actions/index";
+import { Ionicons } from '@expo/vector-icons';
+import FlashMessage, { showMessage } from "react-native-flash-message";
 import { Button as Element } from 'react-native-elements';
 
 import Header from "../../components/auth/Header";
@@ -19,25 +19,37 @@ class login extends Component {
         super(props)
 
         this.state = {
-            username: 'giorgi.bibilashvili89@gmail.com',
-            password: 'test123456',
+            username: '',
+            password: '',
         }
     }
 
     handleChange = (name, value) => {
-        this.setState({[name]: value});
+        this.setState({ [name]: value });
     }
 
     login = () => {
 
-        // Actions.error();
+        const { username, password } = this.state;
 
-        // Alert.alert("Invalid Credetials!");
+        if (username.length == 0) {
+            showMessage({
+                message: "Email is required!",
+                type: "danger",
+            });
+            return;
+        }
 
-        showMessage({
-            message: "Simple message",
-            type: "danger",
-        });
+        if (password.length == 0) {
+            showMessage({
+                message: "Password is required!",
+                type: "danger",
+            });
+            return;
+        }
+
+
+        Alert.alert("Login not implemented yet!");
 
         // const { username, password } = this.state;
         // const { setAccessToken } = this.props;
@@ -49,35 +61,37 @@ class login extends Component {
 
     render() {
 
-        const {username, password} = this.state;
+        const { username, password } = this.state;
         return (
-            <PublicContainer>
-                <Header/>
-                <Content>
-                    <View style={styles.formContainer}>
-                        <Item style={styles.inputItem}>
-                            <Icon active name='user' type="AntDesign"/>
-                            <Input placeholder='Email Address' value={username}
-                                   onChangeText={(val) => this.handleChange('username', val)}/>
-                        </Item>
-                        <Item style={styles.inputItem}>
-                            <Icon active name='lock' type="AntDesign"/>
-                            <Input secureTextEntry={true} placeholder='Password' value={password}
-                                   onChangeText={(val) => this.handleChange('password', val)}/>
-                        </Item>
-                        <Button primary block style={styles.button} onPress={this.login}>
-                            <Text style={styles.buttonText}>Log In</Text>
-                        </Button>
+            <PublicContainer showTabs={true} active="home">
+                <Header />
+                <View style={styles.formContainer}>
+                    <Item style={styles.inputItem}>
+                        <Icon active name='user' type="FontAwesome" />
+                        <Input placeholder='Email Address' style={styles.input} value={username}
+                            onChangeText={(val) => this.handleChange('username', val)} />
+                    </Item>
+                    <Item style={styles.inputItem}>
+                        <Icon active name='lock' type="FontAwesome" />
+                        <Input secureTextEntry={true} style={styles.input} placeholder='Password' value={password}
+                            onChangeText={(val) => this.handleChange('password', val)} />
+                    </Item>
 
-                        <Button light block style={styles.button} onPress={() => Actions.register()}>
-                            <Text style={styles.buttonTextDark}>Sign Up</Text>
-                        </Button>
 
-                        <Button transparent info block style={styles.button} onPress={() => Actions.forgotpassword()}>
-                            <Text style={styles.buttonTextDark}>Forgot Password</Text>
+                    <View style={styles.buttonView}>
+                        <Button primary block style={styles.buttonLogin} onPress={this.login}>
+                            <Text uppercase={false} style={styles.buttonTextDark}>Log In</Text>
+                        </Button>
+                        <Button light block style={styles.buttonSignup} onPress={() => Actions.register()}>
+                            <Text uppercase={false} style={styles.buttonTextDark}>Sign Up</Text>
                         </Button>
                     </View>
-                </Content>
+
+
+                    <Button transparent info block style={styles.buttonForgot} onPress={() => Actions.forgotpassword()}>
+                        <Text uppercase={false} style={styles.buttonTextDark}>Forgot Password?</Text>
+                    </Button>
+                </View>
             </PublicContainer>
         )
     }
@@ -85,9 +99,10 @@ class login extends Component {
 
 const styles = StyleSheet.create({
     formContainer: {
+        marginTop: 15,
+        paddingHorizontal: 30,
         flex: 1,
         alignItems: 'center',
-        padding: 15,
     },
 
     titleView: {
@@ -108,27 +123,53 @@ const styles = StyleSheet.create({
         padding: 20,
     },
 
-    inputItem: {
-        paddingVertical: 10,
-    },
 
-    button: {
+
+    buttonLogin: {
         padding: 20,
         marginTop: 15,
-        height: 60,
+        height: 50,
+        marginRight: 10,
+        borderWidth: 0,
+        backgroundColor: '#d2d7d3',
+    },
+
+    buttonSignup: {
+        marginLeft: 10,
+        padding: 20,
+        marginTop: 15,
+        height: 50,
+        borderWidth: 0,
+        backgroundColor: '#d2d7d3',
+    },
+
+    buttonForgot: {
+        marginTop: 20,
     },
 
     buttonText: {
         color: 'white',
-        fontWeight: 'bold',
-        fontSize: 17,
+        fontSize: 14,
     },
 
     buttonTextDark: {
-        color: 'gray',
-        fontWeight: 'bold',
-        fontSize: 17,
+        color: '#2e3131',
+        fontSize: 14,
     },
+
+    buttonView: {
+        flexDirection: 'row',
+    },
+
+    inputItem: {
+        paddingVertical: 10,
+        borderBottomColor: '#2e3131',
+    },
+
+    input: {
+        fontSize: 14,
+    }
+
 });
 
-export default connect(null, {setAccessToken})(login);
+export default connect(null, { setAccessToken })(login);

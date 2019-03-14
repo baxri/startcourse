@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, Dimensions, KeyboardAvoidingView } from 'react-native'
 import { Container, Content } from "native-base";
-import FlashMessage, {showMessage} from "react-native-flash-message";
+import FlashMessage, { showMessage } from "react-native-flash-message";
+
+import FooterTabs from "../components/auth/FooterTabs";
 
 export default class PublicContainer extends Component {
 
@@ -19,14 +21,15 @@ export default class PublicContainer extends Component {
 
     render() {
 
-        const { children } = this.props;
+        const { children, showTabs, active } = this.props;
 
         return (
             <Container style={styles.container} onLayout={this._onLayout.bind(this)}>
-                <KeyboardAvoidingView behavior="padding" style={styles.avoidKeyBoard}>
+                <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
                     {children}
                 </KeyboardAvoidingView>
                 <FlashMessage position="top" />
+                {showTabs == true && <FooterTabs active={active} />}
             </Container >
         )
     }
@@ -34,10 +37,6 @@ export default class PublicContainer extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#e4e9ed',
+        backgroundColor: '#eeeeee',
     },
-
-    avoidKeyBoard: {
-        flex: 1,
-    }
 })

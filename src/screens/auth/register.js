@@ -18,7 +18,7 @@ export default class Register extends Component {
                     placeholder: 'Email Address',
                     error: true,
                     retuired: true,
-                    icon: 'email-outline',
+                    icon: 'email',
                     iconType: 'MaterialCommunityIcons',
                     value: '',
                     validate: (value) => value.length === 0
@@ -28,7 +28,7 @@ export default class Register extends Component {
                     error: false,
                     retuired: true,
                     icon: 'lock',
-                    iconType: 'AntDesign',
+                    iconType: 'FontAwesome',
                     value: '',
                     validate: (value) => value.length === 0
                 },
@@ -37,7 +37,7 @@ export default class Register extends Component {
                     error: false,
                     retuired: true,
                     icon: 'lock',
-                    iconType: 'AntDesign',
+                    iconType: 'FontAwesome',
                     value: '',
                     validate: (value) => value.length === 0
                 },
@@ -46,7 +46,7 @@ export default class Register extends Component {
                     error: false,
                     retuired: true,
                     icon: 'user',
-                    iconType: 'AntDesign',
+                    iconType: 'FontAwesome',
                     value: '',
                     validate: (value) => value.length === 0
                 },
@@ -55,7 +55,7 @@ export default class Register extends Component {
                     error: false,
                     retuired: true,
                     icon: 'user',
-                    iconType: 'AntDesign',
+                    iconType: 'FontAwesome',
                     value: '',
                     validate: (value) => value.length === 0
                 }
@@ -91,7 +91,7 @@ export default class Register extends Component {
 
                             return (<Item key={key} style={styles.inputItem} error={field.error}>
                                 <Icon active name={field.icon} type={field.iconType} />
-                                <Input placeholder={field.placeholder} value={field.value} onChangeText={(val) => this.handleChange(key, val)} />
+                                <Input style={styles.input} placeholder={field.placeholder} value={field.value} onChangeText={(val) => this.handleChange(key, val)} />
                             </Item>)
                         })}
                     </View>
@@ -112,6 +112,7 @@ export default class Register extends Component {
 const styles = StyleSheet.create({
 
     formContainer: {
+        paddingHorizontal: 30,
         flex: 1,
         alignItems: 'center',
         padding: 15,
@@ -119,17 +120,20 @@ const styles = StyleSheet.create({
 
     inputItem: {
         paddingVertical: 10,
+        borderBottomColor: '#2e3131',
     },
 
     buttonText: {
         color: 'white',
-        fontWeight: 'bold',
-        fontSize: 17,
+        fontSize: 14,
     },
 
     buttonTextDark: {
         color: 'gray',
-        fontWeight: 'bold',
-        fontSize: 17,
+        fontSize: 14,
     },
+
+    input: {
+        fontSize: 14,
+    }
 })

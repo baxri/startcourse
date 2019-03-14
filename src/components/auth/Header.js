@@ -1,17 +1,48 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, ImageBackground, Image } from "react-native";
+import { StyleSheet, View, ImageBackground, Image, Text } from "react-native";
 import PropTypes from 'prop-types';
 
 class Header extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            appIsReady: false
+        }
+    }
+
+
+    async componentWillMount() {
+        // Wait for both fonts and images
+        await Promise.all([
+            this._cacheResourcesAsync(),
+        ]).catch(err => { });
+        this.setState({ appIsReady: true });
+    }
+
+    async _cacheResourcesAsync() {
+        const images = [
+            require('../../resources/images/road.jpeg'),
+            require('../../resources/images/brand/title_outlined.png'),
+        ];
+        // Asset.loadAsync takes an array and this way we can load the images in parallel
+        await Asset.loadAsync(images);
+    }
+
     render() {
 
         const { type } = this.props;
 
+        if (!this.state.appIsReady) {
+            return (<Text>LOADING APP!</Text>);
+        }
+
         return (
             <View style={styles.logoContainer}>
-                <ImageBackground style={styles.logo} fadeDuration={0}
+                <ImageBackground style={styles.logo} imageStyle={{ borderRadius: 20 }} fadeDuration={0}
                     source={require('../../resources/images/road.jpeg')} >
-                    <Image style={styles.image} source={require('../../resources/images/brand/title_outlined.png')} ></Image>
+                    <Image style={styles.image} fadeDuration={0} source={require('../../resources/images/brand/title_outlined.png')} ></Image>
                 </ImageBackground>
             </View>
 
@@ -22,11 +53,11 @@ class Header extends Component {
 const styles = StyleSheet.create({
 
     logoContainer: {
-        flex: 0.7,
+        marginTop: 55,
+        paddingHorizontal: 30,
+        flex: 0.4,
         alignItems: 'center',
         justifyContent: 'center',
-        borderBottomWidth: 4,
-        borderColor: '#1f3a93',
     },
 
     logo: {
@@ -38,9 +69,11 @@ const styles = StyleSheet.create({
     },
 
     image: {
-        marginTop: 40,
-        height: 70,
-        width: 300,
+        marginTop: 15,
+        marginLeft: 15,
+        height: 59,
+        width: 250,
+        resizeMode: 'stretch'
     },
 });
 
