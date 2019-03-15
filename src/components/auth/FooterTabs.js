@@ -1,40 +1,46 @@
-import React, { Component } from 'react';
-import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text } from 'native-base';
-import { StyleSheet, View, KeyboardAvoidingView, Image, TouchableOpacity } from 'react-native'
-import { Actions } from "react-native-router-flux";
+import React, {Component} from 'react';
+import {Container, Header, Content, Footer, FooterTab, Button, Icon, Text} from 'native-base';
+import {StyleSheet, View, KeyboardAvoidingView, Image, TouchableOpacity, ImageBackground} from 'react-native'
+import {Actions} from "react-native-router-flux";
+import {AppLoading, Asset, Font} from 'expo';
 
-const homeIcon = require('../../resources/images/icons/home.png');
-const tripsIcon = require('../../resources/images/icons/trip.png');
-const bidsIcon = require('../../resources/images/icons/bids.png');
-const setupIcon = require('../../resources/images/icons/setup.png');
+const homeIcon = require('../../../assets/icons/home.png');
+const tripsIcon = require('../../../assets/icons/trip.png');
+const bidsIcon = require('../../../assets/icons/bids.png');
+const setupIcon = require('../../../assets/icons/setup.png');
 
 export default class FooterTabs extends Component {
     render() {
 
-        const { active } = this.props;
+        const {active} = this.props;
 
         return (
-            <Footer style={styles.footer}>
-              
-                <FooterTab style={styles.footerTab}>
-                    <Button vertical style={active == 'home' ? styles.buttonActive : styles.button} onPress={() => Actions.home()}>
-                        <Image style={styles.image} fadeDuration={0} source={homeIcon} ></Image>
-                        <Text uppercase={false} style={styles.text}>Home</Text>
-                    </Button>
-                    <Button vertical style={active == 'trip' ? styles.buttonActive : styles.button} onPress={() => Actions.trips()}>
-                        <Image style={styles.image} fadeDuration={0} source={tripsIcon} ></Image>
-                        <Text uppercase={false} style={styles.text}>Trips</Text>
-                    </Button>
-                    <Button vertical style={active == 'bids' ? styles.buttonActive : styles.button} onPress={() => Actions.bids()}>
-                        <Image style={styles.image} fadeDuration={0} source={bidsIcon} ></Image>
-                        <Text uppercase={false} style={styles.text}>Bids</Text>
-                    </Button>
-                    <Button vertical style={active == 'setup' ? styles.buttonActive : styles.button} onPress={() => Actions.setup()}>
-                        <Image style={styles.image} fadeDuration={0} source={setupIcon} ></Image>
-                        <Text uppercase={false} style={styles.text}>Setup</Text>
-                    </Button>
-                </FooterTab>
-            </Footer>
+            <View>
+                <Footer style={styles.footer}>
+                    <FooterTab style={styles.footerTab}>
+                        <Button vertical style={active == 'home' ? styles.buttonActive : styles.button}
+                                onPress={() => Actions.home()}>
+                            <ImageBackground style={styles.image} fadeDuration={0} source={homeIcon}></ImageBackground>
+                            <Text uppercase={false} style={styles.text}>Home</Text>
+                        </Button>
+                        <Button vertical style={active == 'trip' ? styles.buttonActive : styles.button}
+                                onPress={() => Actions.trips()}>
+                            <ImageBackground style={styles.image} fadeDuration={0} source={tripsIcon}></ImageBackground>
+                            <Text uppercase={false} style={styles.text}>Trips</Text>
+                        </Button>
+                        <Button vertical style={active == 'bids' ? styles.buttonActive : styles.button}
+                                onPress={() => Actions.bids()}>
+                            <ImageBackground style={styles.image} fadeDuration={0} source={bidsIcon}></ImageBackground>
+                            <Text uppercase={false} style={styles.text}>Bids</Text>
+                        </Button>
+                        <Button vertical style={active == 'setup' ? styles.buttonActive : styles.button}
+                                onPress={() => Actions.setup()}>
+                            <ImageBackground style={styles.image} fadeDuration={0} source={setupIcon}></ImageBackground>
+                            <Text uppercase={false} style={styles.text}>Setup</Text>
+                        </Button>
+                    </FooterTab>
+                </Footer>
+            </View>
         )
     }
 }
@@ -53,10 +59,12 @@ const styles = StyleSheet.create({
     },
 
     button: {
+        height: 100,
         borderRadius: 0,
     },
 
     buttonActive: {
+        height: 100,
         borderTopWidth: 3,
         borderTopColor: '#6c7a89',
         borderRadius: 0,
@@ -70,7 +78,6 @@ const styles = StyleSheet.create({
     },
 
     image: {
-        marginTop: 10,
         height: 40,
         width: 40,
         resizeMode: 'stretch'

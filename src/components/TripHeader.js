@@ -4,8 +4,8 @@ import { StyleSheet, View, KeyboardAvoidingView, Image, TouchableOpacity } from 
 import { Actions } from "react-native-router-flux";
 import { white } from 'ansi-colors';
 
-const leftIcon = require('../resources/images/icons/left.png');
-const rightIcon = require('../resources/images/icons/right.png');
+const leftIcon = require('../../assets/icons/left.png');
+const rightIcon = require('../../assets/icons/right.png');
 
 export default class TripHeader extends Component {
     render() {

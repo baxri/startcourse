@@ -12,7 +12,6 @@ class Header extends Component {
         }
     }
 
-
     async componentWillMount() {
         // Wait for both fonts and images
         await Promise.all([
