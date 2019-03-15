@@ -1,21 +1,28 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, TouchableOpacity } from 'react-native'
-import { Content, Item, Input, Icon, Button, Text } from 'native-base';
+import React, {Component} from 'react'
+import {StyleSheet, View, TouchableOpacity} from 'react-native'
+import {Content, Item, Input, Icon, Button, Text} from 'native-base';
+
+import TripForm from "./TripForm";
 
 export default class TripType extends Component {
     render() {
 
-        const { type, icon, iconType } = this.props;
+        const {type, icon, iconType, active, name, onPress} = this.props;
+
+        const isActive = name == active;
 
         return (
-            <View style={styles.tripContainer} >
-                <TouchableOpacity>
-                    <View style={styles.trip}>
+            <View style={styles.tripContainer}>
+                <TouchableOpacity onPress={() => onPress(name)}>
+                    <View style={[styles.trip, (isActive ? styles.activeTrip : {})]}>
                         <Text style={styles.text}> {type} </Text>
-                        <Icon style={styles.icon} active name={icon} type={iconType} />
+                        <Icon style={styles.icon} active name={icon} type={iconType}/>
                     </View>
                 </TouchableOpacity>
-            </View >
+                {isActive && <View>
+                    <TripForm />
+                </View>}
+            </View>
         )
     }
 }
@@ -34,6 +41,12 @@ const styles = StyleSheet.create({
         borderRadius: 3,
     },
 
+    activeTrip: {
+        borderBottomColor: '#6c7a89',
+        borderBottomWidth: 1,
+        borderRadius: 3,
+    },
+
     text: {
         fontSize: 20,
     },
@@ -44,5 +57,6 @@ const styles = StyleSheet.create({
 
     tripContainer: {
         marginHorizontal: 10,
+        paddingBottom: 15,
     }
 })

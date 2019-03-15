@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
-import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text } from 'native-base';
-import { StyleSheet, View, KeyboardAvoidingView, Image, TouchableOpacity } from 'react-native'
-import { Actions } from "react-native-router-flux";
-import { white } from 'ansi-colors';
+import React, {Component} from 'react';
+import {Container, Header, Content, Footer, FooterTab, Button, Icon, Text} from 'native-base';
+import {StyleSheet, View, KeyboardAvoidingView, Image, TouchableOpacity} from 'react-native'
+import {Actions} from "react-native-router-flux";
 
 const leftIcon = require('../../assets/icons/left.png');
 const rightIcon = require('../../assets/icons/right.png');
 
+
 export default class TripHeader extends Component {
     render() {
 
-        const { title } = this.props;
+        const {title} = this.props;
 
         return (
             <View style={styles.header}>
-                <TouchableOpacity  onPress={() => Actions.auth()}>
+                <TouchableOpacity onPress={() => Actions.auth()}>
                     <Image style={styles.image} fadeDuration={0} source={leftIcon}></Image>
                 </TouchableOpacity>
 
                 <Text style={styles.text}>{title}</Text>
 
-                <TouchableOpacity  >
-                    <Image style={styles.image} fadeDuration={0} source={rightIcon} ></Image>
+                <TouchableOpacity>
+                    <Image style={styles.image} fadeDuration={0} source={rightIcon}></Image>
                 </TouchableOpacity>
             </View>
         )
