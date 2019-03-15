@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { Router, Scene, Lightbox, Modal } from 'react-native-router-flux';
+import { Router, Scene, Lightbox, Modal, Stack } from 'react-native-router-flux';
 import { connect, Provider } from 'react-redux';
 import { AppLoading, Asset, Font } from 'expo';
 
@@ -14,8 +14,11 @@ const RouterWithRedux = connect()(Router);
 import login from "./src/screens/auth/login";
 import register from "./src/screens/auth/register";
 import forgotpassword from "./src/screens/auth/forgotpassword";
-import dashboard from "./src/screens/dashboard";
-import Error from "./src/components/modals/Error";
+
+import homeIndex from "./src/screens/private/home";
+import tripsIndex from "./src/screens/private/trips";
+import bidsIndex from "./src/screens/private/bids";
+import setupIndex from "./src/screens/private/setup";
 
 
 function cacheImages(images) {
@@ -52,14 +55,14 @@ export default class App extends React.Component {
     //     this.setState({ imageLoading: false });
     // }
 
-    async componentDidMount() {
-        await Font.loadAsync({
-            'Roboto': require('native-base/Fonts/Roboto.ttf'),
-            'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-            ...Ionicons.font,
-        });
-        this.setState({ loaded: true });
-    }
+    // async componentDidMount() {
+    //     await Font.loadAsync({
+    //         'Roboto': require('native-base/Fonts/Roboto.ttf'),
+    //         'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+    //         ...Ionicons.font,
+    //     });
+    //     this.setState({ loaded: true });
+    // }
 
     // async _cacheResourcesAsync() {
     //     const images = [
@@ -86,15 +89,31 @@ export default class App extends React.Component {
     //     await Promise.all([...imageAssets]);
     // }
 
+    async componentWillMount() {
+        await Asset.loadAsync([
+            require('./src/resources/images/road.jpeg'),
+            require('./src/resources/images/brand/title_outlined.png'),
+
+            require('./src/resources/images/icons/home.png'),
+            require('./src/resources/images/icons/trip.png'),
+            require('./src/resources/images/icons/bids.png'),
+            require('./src/resources/images/icons/setup.png'),
+        ]);
+    }
+
     _loadResourcesAsync = async () => {
         return Promise.all([
             Asset.loadAsync([
                 require('./src/resources/images/road.jpeg'),
                 require('./src/resources/images/brand/title_outlined.png'),
+
                 require('./src/resources/images/icons/home.png'),
                 require('./src/resources/images/icons/trip.png'),
                 require('./src/resources/images/icons/bids.png'),
                 require('./src/resources/images/icons/setup.png'),
+
+                require('./src/resources/images/icons/left.png'),
+                require('./src/resources/images/icons/right.png'),
             ]),
             Font.loadAsync({
                 // This is the font that we are using for our tab bar
@@ -125,33 +144,32 @@ export default class App extends React.Component {
             />);
         }
 
-        if (!this.state.loaded) {
-            return (<Text></Text>);
-        }
-
         return (
             <Provider store={store}>
                 <RouterWithRedux>
-                    <Lightbox>
-                        <Scene key="root">
+                    <Scene key="root">
 
-                            {/* Login Stack */}
-                            <Scene key="auth" type="reset" hideNavBar={true}>
-                                <Scene key="login" initial component={login} title="login" />
-                                <Scene key="register" component={register} title="register" />
-                                <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
-                            </Scene>
+                        {/* Authorized Private Stack */}
+                        <Stack key="private" type="reset" tabs hideNavBar hideTabBar>
+                            <Scene key="trips" init component={tripsIndex} title="trips" hideNavBar />
+                            <Scene key="home" init component={homeIndex} title="home" hideNavBar />
+                            <Scene key="bids" init component={bidsIndex} title="bids" hideNavBar />
+                            <Scene key="setup" init component={setupIndex} title="setup" hideNavBar />
+                        </Stack>
 
-                            {/* Authorized Private Stack */}
-                            <Scene key="private" type="reset" hideNavBar={true}>
-                                <Scene key="dashboard" init component={dashboard} title="dashboard" />
-                            </Scene>
+                        {/* Login Stack */}
+                        <Stack key="auth" type="reset" hideNavBar={true}>
+                            <Scene key="login" initial component={login} title="login" />
+                            <Scene key="register" component={register} title="register" />
+                            <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
+                        </Stack>
 
-                        </Scene>
 
-                        <Scene key="error" component={Error} />
-                    </Lightbox>
 
+
+
+
+                    </Scene>
 
                 </RouterWithRedux>
             </Provider>

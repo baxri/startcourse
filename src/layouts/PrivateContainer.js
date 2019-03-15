@@ -5,7 +5,7 @@ import FlashMessage, { showMessage } from "react-native-flash-message";
 
 import FooterTabs from "../components/auth/FooterTabs";
 
-export default class PublicContainer extends Component {
+export default class PrivateContainer extends Component {
 
     constructor(props) {
         super(props)
@@ -21,7 +21,7 @@ export default class PublicContainer extends Component {
 
     render() {
 
-        const { children } = this.props;
+        const { children, showTabs, active } = this.props;
 
         return (
             <Container style={styles.container} onLayout={this._onLayout.bind(this)}>
@@ -29,6 +29,7 @@ export default class PublicContainer extends Component {
                     {children}
                 </KeyboardAvoidingView>
                 <FlashMessage position="top" />
+                {showTabs == true && <FooterTabs active={active} />}
             </Container >
         )
     }
@@ -36,6 +37,6 @@ export default class PublicContainer extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#eeeeee',
+        backgroundColor: 'white',
     },
 })

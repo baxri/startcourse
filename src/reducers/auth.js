@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/types';
 
 const initialState = {
   token: null,
+  user: null,
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -11,6 +12,11 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         token: action.payload,
+      };
+    case actionTypes.SET_USER:
+      return {
+        ...state,
+        user: action.payload,
       };
 
     // ...other actions

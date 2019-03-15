@@ -5,7 +5,7 @@ import PublicContainer from "../../layouts/PublicContainer";
 import { Content, Item, Input, Icon, Button, Text } from 'native-base';
 import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
-import { setAccessToken } from "../../actions/index";
+import { setAccessToken, setUser } from "../../actions/index";
 import { Ionicons } from '@expo/vector-icons';
 import FlashMessage, { showMessage } from "react-native-flash-message";
 import { Button as Element } from 'react-native-elements';
@@ -31,6 +31,7 @@ class login extends Component {
     login = () => {
 
         const { username, password } = this.state;
+        const { setAccessToken, setUser } = this.props;
 
         if (username.length == 0) {
             showMessage({
@@ -49,14 +50,24 @@ class login extends Component {
         }
 
 
-        Alert.alert("Login not implemented yet!");
+        let user = {
+            username, password
+        }
+
+        setAccessToken('H)D)*HD)SH)(*SDH)F*HSDFDSDISIUSDHSDHFIUSDHF&*F(D&*S^FDF');
+        setUser(user);
+
+        Actions.reset('auth');
+        Actions.private();
+
+        // Alert.alert("Login not implemented yet!");
 
         // const { username, password } = this.state;
         // const { setAccessToken } = this.props;
         // setAccessToken('H)D)*HD)SH)(*SDH)F*HSDFDSDISIUSDHSDHFIUSDHF&*F(D&*S^FDF');
 
         // Actions.reset('auth');
-        // Actions.private();
+        // 
     }
 
     render() {
@@ -172,4 +183,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default connect(null, { setAccessToken })(login);
+export default connect(null, { setAccessToken, setUser })(login);

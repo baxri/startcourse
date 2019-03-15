@@ -6,3 +6,10 @@ export const setAccessToken = (token) => {
         payload: token,
     }
 }
+
+export const setUser = (user) => {
+    return {
+        type: actionTypes.SET_USER,
+        payload: user,
+    }
+}

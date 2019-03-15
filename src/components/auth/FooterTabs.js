@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text } from 'native-base';
-import { StyleSheet, View, KeyboardAvoidingView, Image } from 'react-native'
+import { StyleSheet, View, KeyboardAvoidingView, Image, TouchableOpacity } from 'react-native'
+import { Actions } from "react-native-router-flux";
+
+const homeIcon = require('../../resources/images/icons/home.png');
+const tripsIcon = require('../../resources/images/icons/trip.png');
+const bidsIcon = require('../../resources/images/icons/bids.png');
+const setupIcon = require('../../resources/images/icons/setup.png');
 
 export default class FooterTabs extends Component {
     render() {
@@ -9,21 +15,22 @@ export default class FooterTabs extends Component {
 
         return (
             <Footer style={styles.footer}>
+              
                 <FooterTab style={styles.footerTab}>
-                    <Button vertical style={active == 'home' ? styles.buttonActive : styles.button}>
-                        <Image style={styles.image} fadeDuration={0} source={require('../../resources/images/icons/home.png')} ></Image>
+                    <Button vertical style={active == 'home' ? styles.buttonActive : styles.button} onPress={() => Actions.home()}>
+                        <Image style={styles.image} fadeDuration={0} source={homeIcon} ></Image>
                         <Text uppercase={false} style={styles.text}>Home</Text>
                     </Button>
-                    <Button vertical style={active == 'trip' ? styles.buttonActive : styles.button}>
-                        <Image style={styles.image} fadeDuration={0} source={require('../../resources/images/icons/trip.png')} ></Image>
+                    <Button vertical style={active == 'trip' ? styles.buttonActive : styles.button} onPress={() => Actions.trips()}>
+                        <Image style={styles.image} fadeDuration={0} source={tripsIcon} ></Image>
                         <Text uppercase={false} style={styles.text}>Trips</Text>
                     </Button>
-                    <Button vertical style={active == 'bids' ? styles.buttonActive : styles.button}>
-                        <Image style={styles.image} fadeDuration={0} source={require('../../resources/images/icons/bids.png')} ></Image>
+                    <Button vertical style={active == 'bids' ? styles.buttonActive : styles.button} onPress={() => Actions.bids()}>
+                        <Image style={styles.image} fadeDuration={0} source={bidsIcon} ></Image>
                         <Text uppercase={false} style={styles.text}>Bids</Text>
                     </Button>
-                    <Button vertical style={active == 'setup' ? styles.buttonActive : styles.button}>
-                        <Image style={styles.image} fadeDuration={0} source={require('../../resources/images/icons/setup.png')} ></Image>
+                    <Button vertical style={active == 'setup' ? styles.buttonActive : styles.button} onPress={() => Actions.setup()}>
+                        <Image style={styles.image} fadeDuration={0} source={setupIcon} ></Image>
                         <Text uppercase={false} style={styles.text}>Setup</Text>
                     </Button>
                 </FooterTab>

@@ -1,2 +1,2 @@
 export const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN';
-export const SET_USER_FOR_REDUCER = 'SET_USER_FOR_REDUCER';
+export const SET_USER = 'SET_USER';

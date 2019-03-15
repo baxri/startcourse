@@ -2,18 +2,23 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 import { connect } from "react-redux";
 
-class dashboard extends Component {
+import PrivateContainer from "../../../layouts/PrivateContainer";
+import TripHeader from "../../../components/TripHeader";
+
+class setupIndex extends Component {
     render() {
 
         const { token } = this.props;
 
         return (
-            <View>
+            <PrivateContainer showTabs active="setup">
+                <TripHeader title="Setup" />
                 <Text>
                     {token}
                 </Text>
-            </View>
-        )
+                <Text>SETUP</Text>
+            </PrivateContainer>
+        );
     }
 }
 
@@ -25,6 +30,6 @@ const mapStateToProps = (state) => {
 
 const styles = StyleSheet.create({})
 
-export default connect(mapStateToProps)(dashboard)
+export default connect(mapStateToProps)(setupIndex)
 
 
