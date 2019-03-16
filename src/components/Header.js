@@ -3,9 +3,14 @@ import { Icon, Text } from 'native-base';
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import { Actions } from "react-native-router-flux";
 
-function TripHeader({ title }) {
+function Header({ title, openDrawer }) {
     return (
         <View style={styles.header}>
+
+            <TouchableOpacity onPress={openDrawer}>
+                <Icon name="menu" type="Feather" style={{ color: '#19b5fe' }} />
+            </TouchableOpacity>
+
             <View style={{ flexDirection: 'row' }}>
                 <Text style={[styles.text, { color: '#19b5fe' }]}>Star</Text><Text style={styles.text}>Course</Text>
             </View>
@@ -17,7 +22,7 @@ function TripHeader({ title }) {
     )
 }
 
-export default TripHeader;
+export default Header;
 
 const styles = StyleSheet.create({
     header: {

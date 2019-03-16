@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, ImageBackground, Image, Text } from "react-native";
+import { StyleSheet, View, ImageBackground, Image } from "react-native";
+import { Text } from 'native-base';
 
 function Header({ type, title }) {
     return (

@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {Content} from 'native-base';
 
 import PrivateContainer from "../../../layouts/PrivateContainer";
-import TripHeader from "../../../components/TripHeader";
 import TripType from "../../../components/TripType";
 
 class TripsIndex extends Component {
@@ -28,9 +27,6 @@ class TripsIndex extends Component {
 
         return (
             <PrivateContainer showTabs active="trip">
-
-                <TripHeader title="Trips"/>
-
                 <Content>
                     <TripType type="Round Trip" icon="refresh-ccw" iconType="Feather" active={active}
                               name="round-trip" onPress={this.onPress}/>

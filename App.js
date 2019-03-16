@@ -19,6 +19,7 @@ import homeIndex from "./src/screens/private/home/index";
 import tripsIndex from "./src/screens/private/trips";
 import bidsIndex from "./src/screens/private/bids";
 import setupIndex from "./src/screens/private/setup";
+import ProfileIndex from "./src/screens/private/profile";
 
 function cacheImages(images) {
     return images.map(image => {
@@ -40,53 +41,9 @@ export default class App extends React.Component {
         super(props)
 
         this.state = {
-            loaded: false,
-            imageLoading: true,
             isLoadingComplete: false,
         }
     }
-
-    // async componentWillMount() {
-    //     // Wait for both fonts and images
-    //     await Promise.all([
-    //         this._cacheResourcesAsync(),
-    //     ]).catch(err => { });
-    //     this.setState({ imageLoading: false });
-    // }
-
-    // async componentDidMount() {
-    //     await Font.loadAsync({
-    //         'Roboto': require('native-base/Fonts/Roboto.ttf'),
-    //         'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-    //         ...Ionicons.font,
-    //     });
-    //     this.setState({ loaded: true });
-    // }
-
-    // async _cacheResourcesAsync() {
-    //     const images = [
-    //         require('./src/resources/images/road.jpeg'),
-    //         require('./src/resources/images/brand/title_outlined.png'),
-    //     ];
-    //     // Asset.loadAsync takes an array and this way we can load the images in parallel
-    //     await Asset.loadAsync(images);
-    // }
-
-
-    // async _loadAssetsAsync() {
-    //     const imageAssets = cacheImages([
-    //         require('./src/resources/images/road.jpeg'),
-    //         require('./src/resources/images/brand/title_outlined.png'),
-    //     ]);
-
-    //     // const fontAssets = cacheFonts({
-    //     //     'Roboto': require('native-base/Fonts/Roboto.ttf'),
-    //     //     'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-    //     //     ...Ionicons.font,
-    //     // });
-
-    //     await Promise.all([...imageAssets]);
-    // }
 
     _loadResourcesAsync = async () => {
         return Promise.all([
@@ -111,8 +68,6 @@ export default class App extends React.Component {
     };
 
     _handleLoadingError = error => {
-        // In this case, you might want to report the error to your error
-        // reporting service, for example Sentry
         alert(error);
     };
 
@@ -144,10 +99,11 @@ export default class App extends React.Component {
 
                         {/* Authorized Private Stack */}
                         <Stack key="private" type="reset" tabs hideNavBar hideTabBar>
-                            <Scene key="home" init component={homeIndex} title="home" hideNavBar />
-                            <Scene key="trips" init component={tripsIndex} title="trips" hideNavBar />
-                            <Scene key="bids" init component={bidsIndex} title="bids" hideNavBar />
-                            <Scene key="setup" init component={setupIndex} title="setup" hideNavBar />
+                            <Scene key="home" initial component={homeIndex} title="home" hideNavBar />
+                            <Scene key="trips" component={tripsIndex} title="trips" hideNavBar />
+                            <Scene key="bids" component={bidsIndex} title="bids" hideNavBar />
+                            <Scene key="setup" component={setupIndex} title="setup" hideNavBar />
+                            <Scene key="profile" component={ProfileIndex} title="profile" hideNavBar />
                         </Stack>
 
                     </Scene>

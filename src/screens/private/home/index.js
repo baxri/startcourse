@@ -5,7 +5,6 @@ import CalendarPicker from 'react-native-calendar-picker';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 import PrivateContainer from "../../../layouts/PrivateContainer";
-import TripHeader from "../../../components/TripHeader";
 
 class homeIndex extends Component {
 
@@ -43,7 +42,6 @@ class homeIndex extends Component {
 
         return (
             <PrivateContainer showTabs active="home">
-                <TripHeader title="Home" />
                 <Calendar
 
                     // markingType={'custom'}

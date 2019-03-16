@@ -3,7 +3,6 @@ import { Text, StyleSheet, View } from 'react-native'
 import { connect } from "react-redux";
 
 import PrivateContainer from "../../../layouts/PrivateContainer";
-import TripHeader from "../../../components/TripHeader";
 
 class bidsIndex extends Component {
     render() {
@@ -12,7 +11,6 @@ class bidsIndex extends Component {
 
         return (
             <PrivateContainer showTabs active="bids">
-                <TripHeader title="Bids" />
                 <Text>
                     {token}
                 </Text>

@@ -94,11 +94,6 @@ export default class Register extends Component {
                             style={styles.button}
                             textStyle={styles.buttonText} title="Sign Up" />
 
-                        {/* <Button primary style={styles.button}>
-                            <Text style={styles.buttonText}>Sign Up</Text>
-                        </Button> */}
-
-
                         <View style={styles.articlesContainer}>
                             <Button transparent style={styles.articles}>
                                 <Text style={styles.articlesText}>Privacy policy</Text>
