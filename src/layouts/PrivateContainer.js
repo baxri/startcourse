@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, Dimensions, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Dimensions, KeyboardAvoidingView } from 'react-native'
 import { Container, Drawer } from "native-base";
-import FlashMessage, { showMessage } from "react-native-flash-message";
-import NativeDrawer from 'react-native-drawer'
+import FlashMessage from "react-native-flash-message";
 
 import Header from "../components/Header";
 import FooterTabs from "../components/auth/FooterTabs";
