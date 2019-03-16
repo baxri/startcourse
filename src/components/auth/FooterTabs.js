@@ -16,59 +16,30 @@ export default class FooterTabs extends Component {
         const { active } = this.props;
 
         return (
-            // <View>
-            //     <Footer style={styles.footer}>
-            //         <FooterTab style={styles.footerTab}>
-            //             <Button vertical style={active == 'home' ? styles.buttonActive : styles.button}
-            //                     onPress={() => Actions.home()}>
-            //                 <ImageBackground style={styles.image} fadeDuration={0} source={homeIcon}></ImageBackground>
-            //                 <Text uppercase={false} style={styles.text}>Home</Text>
-            //             </Button>
-            //             <Button vertical style={active == 'trip' ? styles.buttonActive : styles.button}
-            //                     onPress={() => Actions.trips()}>
-            //                 <ImageBackground style={styles.image} fadeDuration={0} source={tripsIcon}></ImageBackground>
-            //                 <Text uppercase={false} style={styles.text}>Trips</Text>
-            //             </Button>
-            //             <Button vertical style={active == 'bids' ? styles.buttonActive : styles.button}
-            //                     onPress={() => Actions.bids()}>
-            //                 <ImageBackground style={styles.image} fadeDuration={0} source={bidsIcon}></ImageBackground>
-            //                 <Text uppercase={false} style={styles.text}>Bids</Text>
-            //             </Button>
-            //             <Button vertical style={active == 'setup' ? styles.buttonActive : styles.button}
-            //                     onPress={() => Actions.setup()}>
-            //                 <ImageBackground style={styles.image} fadeDuration={0} source={setupIcon}></ImageBackground>
-            //                 <Text uppercase={false} style={styles.text}>Setup</Text>
-            //             </Button>
-            //         </FooterTab>
-            //     </Footer>
-            // </View>
-
-            <View>
-                <Footer style={styles.footer}>
-                    <FooterTab style={styles.footerTab}>
-                        <Button vertical style={active == 'home' ? styles.buttonActive : styles.button}
-                            onPress={() => Actions.home()}>
-                            <Icon style={active == 'home' ? styles.iconActive : styles.icon} active name='home' type="FontAwesome" />
-                            <Text uppercase={false} style={active == 'home' ? styles.textActive : styles.text}>Home</Text>
-                        </Button>
-                        <Button vertical style={active == 'trip' ? styles.buttonActive : styles.button}
-                            onPress={() => Actions.trips()}>
-                            <Icon style={active == 'trip' ? styles.iconActive : styles.icon} active name='map' type="FontAwesome" />
-                            <Text uppercase={false} style={active == 'trip' ? styles.textActive : styles.text}>Trips</Text>
-                        </Button>
-                        <Button vertical style={active == 'bids' ? styles.buttonActive : styles.button}
-                            onPress={() => Actions.bids()}>
-                            <Icon style={active == 'bids' ? styles.iconActive : styles.icon} active name='attach-money' type="MaterialIcons" />
-                            <Text uppercase={false} style={active == 'bids' ? styles.textActive : styles.text}>Bids</Text>
-                        </Button>
-                        <Button vertical style={active == 'setup' ? styles.buttonActive : styles.button}
-                            onPress={() => Actions.setup()}>
-                            <Icon style={active == 'setup' ? styles.iconActive : styles.icon} active name='settings' type="SimpleLineIcons" />
-                            <Text uppercase={false} style={active == 'setup' ? styles.textActive : styles.text}>Setup</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
-            </View>
+            <Footer style={styles.footer}>
+                <FooterTab style={styles.footerTab}>
+                    <Button vertical style={active == 'home' ? styles.buttonActive : styles.button}
+                        onPress={() => Actions.home()}>
+                        <Icon style={active == 'home' ? styles.iconActive : styles.icon} active name='home' type="FontAwesome" />
+                        <Text uppercase={false} style={active == 'home' ? styles.textActive : styles.text}>Home</Text>
+                    </Button>
+                    <Button vertical style={active == 'trip' ? styles.buttonActive : styles.button}
+                        onPress={() => Actions.trips()}>
+                        <Icon style={active == 'trip' ? styles.iconActive : styles.icon} active name='map' type="FontAwesome" />
+                        <Text uppercase={false} style={active == 'trip' ? styles.textActive : styles.text}>Trips</Text>
+                    </Button>
+                    <Button vertical style={active == 'bids' ? styles.buttonActive : styles.button}
+                        onPress={() => Actions.bids()}>
+                        <Icon style={active == 'bids' ? styles.iconActive : styles.icon} active name='attach-money' type="MaterialIcons" />
+                        <Text uppercase={false} style={active == 'bids' ? styles.textActive : styles.text}>Bids</Text>
+                    </Button>
+                    <Button vertical style={active == 'setup' ? styles.buttonActive : styles.button}
+                        onPress={() => Actions.setup()}>
+                        <Icon style={active == 'setup' ? styles.iconActive : styles.icon} active name='settings' type="SimpleLineIcons" />
+                        <Text uppercase={false} style={active == 'setup' ? styles.textActive : styles.text}>Setup</Text>
+                    </Button>
+                </FooterTab>
+            </Footer>
         )
     }
 }

@@ -21,20 +21,6 @@ import bidsIndex from "./src/screens/private/bids";
 import setupIndex from "./src/screens/private/setup";
 import ProfileIndex from "./src/screens/private/profile";
 
-function cacheImages(images) {
-    return images.map(image => {
-        if (typeof image === 'string') {
-            return Image.prefetch(image);
-        } else {
-            return Asset.fromModule(image).downloadAsync();
-        }
-    });
-}
-
-function cacheFonts(fonts) {
-    return fonts.map(font => Font.loadAsync(font));
-}
-
 export default class App extends React.Component {
 
     constructor(props) {
@@ -90,13 +76,6 @@ export default class App extends React.Component {
                 <RouterWithRedux>
                     <Scene key="root">
 
-                        {/* Login Stack */}
-                        <Stack key="auth" type="reset" hideNavBar={true}>
-                            <Scene key="login" initial component={login} title="login" />
-                            <Scene key="register" component={register} title="register" />
-                            <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
-                        </Stack>
-
                         {/* Authorized Private Stack */}
                         <Stack key="private" type="reset" tabs hideNavBar hideTabBar>
                             <Scene key="home" initial component={homeIndex} title="home" hideNavBar />
@@ -104,6 +83,13 @@ export default class App extends React.Component {
                             <Scene key="bids" component={bidsIndex} title="bids" hideNavBar />
                             <Scene key="setup" component={setupIndex} title="setup" hideNavBar />
                             <Scene key="profile" component={ProfileIndex} title="profile" hideNavBar />
+                        </Stack>
+
+                        {/* Login Stack */}
+                        <Stack key="auth" type="reset" hideNavBar={true}>
+                            <Scene key="login" initial component={login} title="login" />
+                            <Scene key="register" component={register} title="register" />
+                            <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
                         </Stack>
 
                     </Scene>

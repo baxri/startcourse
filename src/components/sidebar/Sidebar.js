@@ -3,6 +3,7 @@ import { StyleSheet, View, ScrollView, ImageBackground } from 'react-native'
 import { Text, Thumbnail, Button, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
+
 export default class Sidebar extends Component {
 
     render() {
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
+    
 
     avatarContainer: {
         flex: 0.3,

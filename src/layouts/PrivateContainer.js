@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, View, Dimensions, KeyboardAvoidingView } from 'react-native'
 import { Container, Drawer } from "native-base";
 import FlashMessage, { showMessage } from "react-native-flash-message";
+import NativeDrawer from 'react-native-drawer'
 
 import Header from "../components/Header";
 import FooterTabs from "../components/auth/FooterTabs";
@@ -30,19 +31,22 @@ export default class PrivateContainer extends Component {
     }
 
     render() {
-
         const { children, showTabs, active, disableHeader } = this.props;
 
         return (
-            <Drawer ref={(ref) => { this.drawer = ref; }} content={<SideBar closeDrawer={this.closeDrawer} />} onClose={() => this.closeDrawer()} >
-                <FlashMessage position="top" />
+            <Drawer
+                ref={(ref) => { this.drawer = ref; }}
+                content={<SideBar closeDrawer={this.closeDrawer} />}
+                onClose={() => this.closeDrawer()}
+            >
                 <Container style={styles.container} onLayout={this._onLayout.bind(this)}>
+                    {!disableHeader && <Header openDrawer={this.openDrawer} />}
                     <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-                        {!disableHeader && <Header openDrawer={this.openDrawer} />}
                         {children}
                     </KeyboardAvoidingView>
                     {showTabs == true && <FooterTabs active={active} />}
                 </Container >
+                <FlashMessage position="top" />
             </Drawer>
         )
     }
