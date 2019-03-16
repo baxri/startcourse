@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
 
 
     inputItem: {
+        paddingVertical: 5,
         borderBottomColor: '#2e3131',
     },
 

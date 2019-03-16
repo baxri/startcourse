@@ -1,21 +1,13 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, ImageBackground, Image, Text } from "react-native";
 
-class Header extends Component {
-    render() {
-
-        const { type } = this.props;
-
-        return (
-            <View style={styles.logoContainer}>
-                {/* <ImageBackground style={styles.logo} imageStyle={{ borderRadius: 20 }} fadeDuration={0}
-                    source={require('../../resources/images/road.jpeg')} >
-                </ImageBackground> */}
-
-                <Image style={styles.image} fadeDuration={0} source={require('../../../assets/login.png')} ></Image>
-            </View>
-        )
-    }
+function Header({ type, title }) {
+    return (
+        <View style={styles.logoContainer}>
+            {title && <Text style={styles.header}>{title}</Text>}
+            {!title && <Image style={styles.image} fadeDuration={0} source={require('../../../assets/login.png')} ></Image>}
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -34,6 +26,12 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+
+    header: {
+        fontSize: 25,
+        marginTop: 30,
+        marginBottom: 40,
     },
 
     image: {

@@ -6,6 +6,7 @@ import { Content, Item, Input, Icon, Button, Footer, FooterTab } from 'native-ba
 import { Actions } from "react-native-router-flux";
 
 import Header from "../../components/auth/Header";
+import ButtonLoader from "../../components/ButtonLoader";
 
 export default class Register extends Component {
     constructor(props) {
@@ -15,12 +16,23 @@ export default class Register extends Component {
 
             form: {
                 username: {
-                    placeholder: 'Email Address',
-                    error: true,
+                    placeholder: 'Username',
+                    error: false,
                     retuired: true,
-                    icon: 'email',
-                    iconType: 'MaterialCommunityIcons',
+                    icon: 'user',
+                    iconType: 'SimpleLineIcons',
                     value: '',
+                    secured: false,
+                    validate: (value) => value.length === 0
+                },
+                email: {
+                    placeholder: 'Email Address',
+                    error: false,
+                    retuired: true,
+                    icon: 'note',
+                    iconType: 'SimpleLineIcons',
+                    value: '',
+                    secured: false,
                     validate: (value) => value.length === 0
                 },
                 password: {
@@ -28,8 +40,9 @@ export default class Register extends Component {
                     error: false,
                     retuired: true,
                     icon: 'lock',
-                    iconType: 'FontAwesome',
+                    iconType: 'SimpleLineIcons',
                     value: '',
+                    secured: true,
                     validate: (value) => value.length === 0
                 },
                 passwordConfirm: {
@@ -37,35 +50,19 @@ export default class Register extends Component {
                     error: false,
                     retuired: true,
                     icon: 'lock',
-                    iconType: 'FontAwesome',
+                    iconType: 'SimpleLineIcons',
                     value: '',
+                    secured: true,
                     validate: (value) => value.length === 0
                 },
-                firstName: {
-                    placeholder: 'FirstName',
-                    error: false,
-                    retuired: true,
-                    icon: 'user',
-                    iconType: 'FontAwesome',
-                    value: '',
-                    validate: (value) => value.length === 0
-                },
-                lastName: {
-                    placeholder: 'LastName',
-                    error: false,
-                    retuired: true,
-                    icon: 'user',
-                    iconType: 'FontAwesome',
-                    value: '',
-                    validate: (value) => value.length === 0
-                }
+
+
             },
 
             username: '',
+            email: '',
             password: '',
             passwordConfirm: '',
-            firstName: 'George',
-            lastName: 'Bibilashvili',
         }
     }
 
@@ -78,31 +75,45 @@ export default class Register extends Component {
 
     render() {
 
-        const { form } = this.state;
+        const { form, loading } = this.state;
         return (
             <PublicContainer>
                 <Content>
-                    <Header />
+                    <Header title="Sign Up" />
                     <View style={styles.formContainer}>
-
                         {Object.keys(form).map(key => {
-
                             let field = form[key];
-
                             return (<Item key={key} style={styles.inputItem} error={field.error}>
                                 <Icon active name={field.icon} type={field.iconType} />
-                                <Input style={styles.input} placeholder={field.placeholder} value={field.value} onChangeText={(val) => this.handleChange(key, val)} />
+                                <Input secureTextEntry={field.secured} style={styles.input} placeholder={field.placeholder} value={field.value} onChangeText={(val) => this.handleChange(key, val)} />
                             </Item>)
                         })}
+
+                        <ButtonLoader
+                            loading={loading}
+                            style={styles.button}
+                            textStyle={styles.buttonText} title="Sign Up" />
+
+                        {/* <Button primary style={styles.button}>
+                            <Text style={styles.buttonText}>Sign Up</Text>
+                        </Button> */}
+
+
+                        <View style={styles.articlesContainer}>
+                            <Button transparent style={styles.articles}>
+                                <Text style={styles.articlesText}>Privacy policy</Text>
+                            </Button>
+                            <Button transparent style={styles.articles}>
+                                <Text style={styles.articlesText}>Terms of service</Text>
+                            </Button>
+                        </View>
                     </View>
                 </Content>
-                <Footer>
+                {/* <Footer>
                     <FooterTab>
-                        <Button primary style={{backgroundColor: '#19b5fe'}}>
-                            <Text style={styles.buttonText}>REGISTER</Text>
-                        </Button>
+                       
                     </FooterTab>
-                </Footer>
+                </Footer> */}
 
             </PublicContainer>
         )
@@ -115,12 +126,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'center',
         padding: 15,
     },
 
     inputItem: {
         paddingVertical: 5,
-        borderBottomColor: '#2e3131',
     },
 
     buttonText: {
@@ -137,5 +148,32 @@ const styles = StyleSheet.create({
 
     input: {
         fontSize: 17,
-    }
+        color: '#6c7a89',
+    },
+
+    button: {
+        marginTop: 100,
+        width: '75%',
+        justifyContent: 'center',
+        backgroundColor: '#19b5fe',
+        alignSelf: 'center',
+        elevation: 0,
+        marginVertical: 30,
+        borderRadius: 5,
+    },
+
+    articlesContainer: {
+        flex: 1,
+        flexDirection: 'row',
+    },
+
+    articles: {
+        marginHorizontal: 15,
+        marginBottom: 30,
+    },
+
+    articlesText: {
+        color: '#bdc3c7',
+    },
+
 })
