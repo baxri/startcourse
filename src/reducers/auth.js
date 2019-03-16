@@ -2,7 +2,18 @@ import * as actionTypes from '../actions/types';
 
 const initialState = {
   token: null,
-  user: null,
+  user: {
+    id: null,
+    username: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    role: '', //Visitor, Carrier, Admin
+    equipments: [],
+    trips: [],
+    searchTasks: []
+  },
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -15,12 +26,12 @@ export default function reducer(state = initialState, action = {}) {
       };
     case actionTypes.SET_USER:
       return {
+
         ...state,
         user: action.payload,
       };
 
     // ...other actions
-
     default:
       return state;
   }

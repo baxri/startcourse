@@ -11,7 +11,7 @@ import FlashMessage, { showMessage } from "react-native-flash-message";
 import { Button as Element } from 'react-native-elements';
 
 import Header from "../../components/auth/Header";
-import Error from "../../components/modals/Error";
+import ButtonLoader from "../../components/ButtonLoader";
 
 class login extends Component {
 
@@ -21,6 +21,7 @@ class login extends Component {
         this.state = {
             username: '',
             password: '',
+            loading: false,
         }
     }
 
@@ -30,7 +31,7 @@ class login extends Component {
 
     login = () => {
 
-        const { username, password } = this.state;
+        const { username, password, loading } = this.state;
         const { setAccessToken, setUser } = this.props;
 
         if (username.length == 0) {
@@ -49,58 +50,55 @@ class login extends Component {
             return;
         }
 
+        this.setState({ loading: true });
 
-        let user = {
-            username, password
-        }
 
-        setAccessToken('H)D)*HD)SH)(*SDH)F*HSDFDSDISIUSDHSDHFIUSDHF&*F(D&*S^FDF');
-        setUser(user);
+        setTimeout(() => {
+            let user = {
+                username, password
+            }
 
-        Actions.reset('auth');
-        Actions.private();
+            setAccessToken('H)D)*HD)SH)(*SDH)F*HSDFDSDISIUSDHSDHFIUSDHF&*F(D&*S^FDF');
+            setUser(user);
 
-        // Alert.alert("Login not implemented yet!");
+            Actions.reset('auth');
+            Actions.private();
 
-        // const { username, password } = this.state;
-        // const { setAccessToken } = this.props;
-        // setAccessToken('H)D)*HD)SH)(*SDH)F*HSDFDSDISIUSDHSDHFIUSDHF&*F(D&*S^FDF');
+        }, 600);
 
-        // Actions.reset('auth');
-        // 
     }
 
     render() {
 
-        const { username, password } = this.state;
+        const { username, password, loading } = this.state;
         return (
             <PublicContainer showTabs={true} active="home">
                 <Header />
                 <View style={styles.formContainer}>
                     <Item style={styles.inputItem}>
-                        <Icon active name='user' type="FontAwesome" />
+                        <Icon active name='user' type="SimpleLineIcons" />
                         <Input placeholder='Email Address' style={styles.input} value={username}
                             onChangeText={(val) => this.handleChange('username', val)} />
                     </Item>
                     <Item style={styles.inputItem}>
-                        <Icon active name='lock' type="FontAwesome" />
+                        <Icon active name='lock' type="SimpleLineIcons" />
                         <Input secureTextEntry={true} style={styles.input} placeholder='Password' value={password}
                             onChangeText={(val) => this.handleChange('password', val)} />
                     </Item>
 
+                    <ButtonLoader
+                        loading={loading}
+                        onPress={this.login}
+                        style={styles.buttonLogin}
+                        textStyle={styles.LoginbuttonText} title="LOGIN" />
 
-                    <View style={styles.buttonView}>
-                        <Button primary block style={styles.buttonLogin} onPress={this.login}>
-                            <Text uppercase={false} style={styles.buttonTextDark}>Log In</Text>
-                        </Button>
-                        <Button light block style={styles.buttonSignup} onPress={() => Actions.register()}>
-                            <Text uppercase={false} style={styles.buttonTextDark}>Sign Up</Text>
-                        </Button>
-                    </View>
+                    <Button transparent info block style={{ marginTop: 10, }} onPress={() => Actions.register()}>
+                        <Text uppercase={false} style={styles.buttonTextDark}>Not registered?</Text>
+                        <Text uppercase={false} style={[styles.buttonTextBlue, { marginLeft: -20, }]}>Sign up here</Text>
+                    </Button>
 
-
-                    <Button transparent info block style={styles.buttonForgot} onPress={() => Actions.forgotpassword()}>
-                        <Text uppercase={false} style={styles.buttonTextDark}>Forgot Password?</Text>
+                    <Button transparent info block style={{ marginTop: 40, }} onPress={() => Actions.forgotpassword()}>
+                        <Text uppercase={false} style={styles.buttonTextBlue}>Forgot Password?</Text>
                     </Button>
                 </View>
             </PublicContainer>
@@ -134,33 +132,23 @@ const styles = StyleSheet.create({
         padding: 20,
     },
 
-
-
     buttonLogin: {
         padding: 20,
-        marginTop: 15,
+        marginTop: 50,
         height: 50,
-        marginRight: 10,
+        marginHorizontal: 55,
         borderWidth: 0,
-        backgroundColor: '#d2d7d3',
-    },
-
-    buttonSignup: {
-        marginLeft: 10,
-        padding: 20,
-        marginTop: 15,
-        height: 50,
-        borderWidth: 0,
-        backgroundColor: '#d2d7d3',
+        backgroundColor: '#19b5fe',
+        elevation: 0,
     },
 
     buttonForgot: {
-        marginTop: 20,
     },
 
-    buttonText: {
+    LoginbuttonText: {
         color: 'white',
-        fontSize: 14,
+        fontSize: 16,
+        fontWeight: 'bold',
     },
 
     buttonTextDark: {
@@ -168,17 +156,22 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
 
-    buttonView: {
-        flexDirection: 'row',
+    buttonTextBlue: {
+        color: '#19b5fe',
+        fontSize: 14,
     },
 
+    buttonView: {
+        // flexDirection: 'row',
+    },
+
+
     inputItem: {
-        paddingVertical: 10,
         borderBottomColor: '#2e3131',
     },
 
     input: {
-        fontSize: 14,
+        fontSize: 17,
     }
 
 });

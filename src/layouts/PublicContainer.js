@@ -36,6 +36,6 @@ export default class PublicContainer extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#eeeeee',
+        backgroundColor: '#fff',
     },
 })

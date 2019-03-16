@@ -1,11 +1,11 @@
-import {Ionicons} from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import {Router, Scene, Lightbox, Modal, Stack} from 'react-native-router-flux';
-import {connect, Provider} from 'react-redux';
-import {AppLoading, Asset, Font} from 'expo';
+import { Router, Scene, Lightbox, Modal, Stack } from 'react-native-router-flux';
+import { connect, Provider } from 'react-redux';
+import { AppLoading, Asset, Font } from 'expo';
 
 import configureStore from './src/store/index';
-import {Text, Image} from "react-native";
+import { Text, Image } from "react-native";
 
 const store = configureStore()
 const RouterWithRedux = connect()(Router);
@@ -15,11 +15,10 @@ import login from "./src/screens/auth/login";
 import register from "./src/screens/auth/register";
 import forgotpassword from "./src/screens/auth/forgotpassword";
 
-import homeIndex from "./src/screens/private/home";
+import homeIndex from "./src/screens/private/home/index";
 import tripsIndex from "./src/screens/private/trips";
 import bidsIndex from "./src/screens/private/bids";
 import setupIndex from "./src/screens/private/setup";
-
 
 function cacheImages(images) {
     return images.map(image => {
@@ -118,7 +117,7 @@ export default class App extends React.Component {
     };
 
     _handleFinishLoading = () => {
-        this.setState({isLoadingComplete: true});
+        this.setState({ isLoadingComplete: true });
     };
 
     render() {
@@ -136,23 +135,22 @@ export default class App extends React.Component {
                 <RouterWithRedux>
                     <Scene key="root">
 
-                        {/* Login Stack */}
-                        <Stack key="auth" type="reset" hideNavBar={true}>
-                            <Scene key="login" initial component={login} title="login"/>
-                            <Scene key="register" component={register} title="register"/>
-                            <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword"/>
-                        </Stack>
-
                         {/* Authorized Private Stack */}
                         <Stack key="private" type="reset" tabs hideNavBar hideTabBar>
-                            <Scene key="trips" init component={tripsIndex} title="trips" hideNavBar/>
-                            <Scene key="home" init component={homeIndex} title="home" hideNavBar/>
-                            <Scene key="bids" init component={bidsIndex} title="bids" hideNavBar/>
-                            <Scene key="setup" init component={setupIndex} title="setup" hideNavBar/>
+                            <Scene key="home" init component={homeIndex} title="home" hideNavBar />
+                            <Scene key="trips" init component={tripsIndex} title="trips" hideNavBar />
+                            <Scene key="bids" init component={bidsIndex} title="bids" hideNavBar />
+                            <Scene key="setup" init component={setupIndex} title="setup" hideNavBar />
+                        </Stack>
+
+                        {/* Login Stack */}
+                        <Stack key="auth" type="reset" hideNavBar={true}>
+                            <Scene key="login" initial component={login} title="login" />
+                            <Scene key="register" component={register} title="register" />
+                            <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
                         </Stack>
 
                     </Scene>
-
                 </RouterWithRedux>
             </Provider>
         );

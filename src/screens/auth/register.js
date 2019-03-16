@@ -98,8 +98,8 @@ export default class Register extends Component {
                 </Content>
                 <Footer>
                     <FooterTab>
-                        <Button primary>
-                            <Text style={styles.buttonText}>Register</Text>
+                        <Button primary style={{backgroundColor: '#19b5fe'}}>
+                            <Text style={styles.buttonText}>REGISTER</Text>
                         </Button>
                     </FooterTab>
                 </Footer>
@@ -119,21 +119,23 @@ const styles = StyleSheet.create({
     },
 
     inputItem: {
-        paddingVertical: 10,
+        paddingVertical: 5,
         borderBottomColor: '#2e3131',
     },
 
     buttonText: {
         color: 'white',
-        fontSize: 14,
+        fontSize: 16,
+        fontWeight: 'bold',
     },
 
     buttonTextDark: {
         color: 'gray',
-        fontSize: 14,
+        fontSize: 16,
+        fontWeight: 'bold',
     },
 
     input: {
-        fontSize: 14,
+        fontSize: 17,
     }
 })
