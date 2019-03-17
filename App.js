@@ -17,6 +17,7 @@ import forgotpassword from "./src/screens/auth/forgotpassword";
 
 import homeIndex from "./src/screens/private/home/index";
 import tripsIndex from "./src/screens/private/trips";
+import tripsCreate from "./src/screens/private/trips/create";
 import bidsIndex from "./src/screens/private/bids";
 import setupIndex from "./src/screens/private/setup";
 import ProfileIndex from "./src/screens/private/profile";
@@ -76,6 +77,25 @@ export default class App extends React.Component {
                 <RouterWithRedux>
                     <Scene key="root">
 
+                        {/* Authorized Private Stack */}
+                        <Scene key="private" type="reset" hideNavBar>
+
+                            <Scene key="tabs" tabs hideNavBar hideTabBar>
+                                <Scene key="home" component={homeIndex} title="home" hideNavBar />
+                                <Scene key="trips" tabs initial hideTabBar>
+                                    <Scene key="tripsList" initial component={tripsIndex} hideNavBar />
+                                    <Scene key="tripsCreate" component={tripsCreate} hideNavBar />
+                                </Scene>
+                                <Scene key="bids" component={bidsIndex} title="bids" hideNavBar />
+                                <Scene key="setup" component={setupIndex} title="setup" hideNavBar />
+                            </Scene>
+
+                            <Scene key="main" hideNavBar hideTabBar>
+                                <Scene key="profile" initial component={ProfileIndex} title="profile" hideNavBar />
+                            </Scene>
+
+                        </Scene>
+
 
                         {/* Login Stack */}
                         <Stack key="auth" type="reset" hideNavBar={true}>
@@ -84,21 +104,6 @@ export default class App extends React.Component {
                             <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
                         </Stack>
 
-                        {/* Authorized Private Stack */}
-                        <Stack key="private" type="reset" tabs hideNavBar hideTabBar>
-
-                            <Stack key="tabs" tabs hideNavBar hideTabBar>
-                                <Scene key="home" initial component={homeIndex} title="home" hideNavBar />
-                                <Scene key="trips"  component={tripsIndex} title="trips" hideNavBar />
-                                <Scene key="bids" component={bidsIndex} title="bids" hideNavBar />
-                                <Scene key="setup" component={setupIndex} title="setup" hideNavBar />
-                            </Stack>
-
-                            <Stack key="main" hideNavBar hideTabBar>
-                                <Scene key="profile" initial component={ProfileIndex} title="profile" hideNavBar />
-                            </Stack>
-
-                        </Stack>
 
 
                     </Scene>

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, View, RefreshControl, ListView } from 'react-native'
 import { connect } from "react-redux";
 import { Content, List, Button, Icon } from 'native-base';
+import { Actions } from 'react-native-router-flux';
+
 
 import PrivateContainer from "../../../layouts/PrivateContainer";
 import ListItem from "../../../components/trips/ListItem";
@@ -33,8 +35,6 @@ class TripsIndex extends Component {
             <PrivateContainer showTabs active="trip">
                 <Content refreshControl={<RefreshControl refreshing={this.state.loading} onRefresh={() => { this._onRefresh() }} />}>
 
-
-
                     <List
                         dataSource={this.ds.cloneWithRows(trips)}
                         renderRow={(item, secId, rowId, rowMap) => (<ListItem item={item} />)}
@@ -45,7 +45,7 @@ class TripsIndex extends Component {
                     />
 
                 </Content>
-                <Button style={styles.buttonLogin}>
+                <Button style={styles.buttonLogin} onPress={() => Actions.tripsCreate()}>
                     <Text style={styles.LoginbuttonText}>Create New Trip</Text>
                 </Button>
             </PrivateContainer>

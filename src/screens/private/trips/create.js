@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
-import {Text, StyleSheet, View} from 'react-native'
-import {connect} from "react-redux";
-import {Content} from 'native-base';
+import React, { Component } from 'react'
+import { Text, StyleSheet, View } from 'react-native'
+import { connect } from "react-redux";
+import { Content } from 'native-base';
 
 import PrivateContainer from "../../../layouts/PrivateContainer";
 import TripType from "../../../components/TripType";
 
-class TripsIndex extends Component {
+class TripsCreate extends Component {
 
     constructor(props) {
         super(props);
@@ -17,25 +17,25 @@ class TripsIndex extends Component {
     }
 
     onPress = (active) => {
-        this.setState({active});
+        this.setState({ active });
     }
 
     render() {
 
-        const {token} = this.props;
-        const {active} = this.state;
+        const { token } = this.props;
+        const { active } = this.state;
 
         return (
-            <PrivateContainer showTabs active="trip">
+            <PrivateContainer showTabs active="trip" showBack={true}>
                 <Content>
                     <TripType type="Round Trip" icon="refresh-ccw" iconType="Feather" active={active}
-                              name="round-trip" onPress={this.onPress}/>
+                        name="round-trip" onPress={this.onPress} />
                     <TripType type="One Way" icon="arrow-right" iconType="Feather" active={active} name="one-way"
-                              onPress={this.onPress}/>
+                        onPress={this.onPress} />
                     <TripType type="Destination Layover" icon="refresh-ccw" iconType="Feather" active={active}
-                              name="des-layer" onPress={this.onPress}/>
+                        name="des-layer" onPress={this.onPress} />
                     <TripType type="What this means" icon="alert-circle" iconType="Feather" active={active}
-                              name="what-this-means" onPress={this.onPress}/>
+                        name="what-this-means" onPress={this.onPress} />
                 </Content>
 
             </PrivateContainer>
@@ -51,6 +51,6 @@ const mapStateToProps = (state) => {
 
 const styles = StyleSheet.create({})
 
-export default connect(mapStateToProps)(TripsIndex)
+export default connect(mapStateToProps)(TripsCreate)
 
 

@@ -30,7 +30,7 @@ export default class PrivateContainer extends Component {
     }
 
     render() {
-        const { children, showTabs, active, disableHeader } = this.props;
+        const { children, showTabs, showBack, active, disableHeader } = this.props;
 
         return (
             <Drawer
@@ -39,7 +39,7 @@ export default class PrivateContainer extends Component {
                 onClose={() => this.closeDrawer()}
             >
                 <Container style={styles.container} onLayout={this._onLayout.bind(this)}>
-                    {!disableHeader && <Header openDrawer={this.openDrawer} />}
+                    {!disableHeader && <Header openDrawer={this.openDrawer} showBack={showBack} />}
                     <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
                         {children}
                     </KeyboardAvoidingView>
