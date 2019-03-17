@@ -35,10 +35,9 @@ const mapStateToProps = (state) => {
 
 const styles = StyleSheet.create({
     avatarContainer: {
-        flex: 0.3,
         alignItems: 'center',
         backgroundColor: '#eeeeee',
-        paddingTop: 40,
+        paddingTop: 30,
         paddingBottom: 30,
     },
 
@@ -47,7 +46,7 @@ const styles = StyleSheet.create({
         marginRight: 15,
         width: 110,
         height: 110,
-        borderRadius: 100,
+        borderRadius: 50,
     },
 
     header: {
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     },
 
     backButton: {
-
+        height: 80,
     },
 
     backButtonText: {

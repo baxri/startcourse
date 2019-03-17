@@ -102,6 +102,7 @@ class login extends Component {
                     </Button>
                 </View>
             </PublicContainer>
+            
         )
     }
 }

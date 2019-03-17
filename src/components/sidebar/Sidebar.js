@@ -20,7 +20,7 @@ export default class Sidebar extends Component {
                 </View>
                 <View style={styles.menuContainer}>
                     <Button iconLeft transparent style={styles.menuItems} onPress={() => Actions.private()}>
-                        <Icon name='home' type="FontAwesome" style={styles.menuItemsIconActive} />
+                        <Icon name='home' type="AntDesign" style={styles.menuItemsIconActive} />
                         <Text uppercase={false} style={styles.menuItemsTextActive}>Home</Text>
                     </Button>
                     <Button iconLeft transparent style={styles.menuItems} onPress={() => {
@@ -31,7 +31,7 @@ export default class Sidebar extends Component {
                            
                         }, 300)
                     }}>
-                        <Icon name='user' type="FontAwesome" style={styles.menuItemsIcon} />
+                        <Icon name='user' type="SimpleLineIcons" style={styles.menuItemsIcon} />
                         <Text uppercase={false} style={styles.menuItemsText}>Profile</Text>
                     </Button>
                     <Button iconLeft transparent style={styles.menuItems} onPress={() => {
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         marginRight: 15,
         width: 100,
         height: 100,
-        borderRadius: 100,
+        borderRadius: 50,
     },
 
     header: {

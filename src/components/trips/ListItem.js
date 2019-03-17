@@ -1,11 +1,11 @@
 import React from 'react'
-import { StyleSheet, View, RefreshControl, ListView } from 'react-native'
+import { StyleSheet, View, RefreshControl, ListView, Platform } from 'react-native'
 import { Content, List, Button, Icon, ListItem, Text } from 'native-base';
-
+import { Actions } from 'react-native-router-flux';
 
 export default function ListViewItem({ item }) {
     return (
-        <ListItem style={styles.listitem}>
+        <ListItem style={styles.listitem} onPress={() => Actions.tripsDetails()}>
             <View style={styles.header}>
                 <Text style={{ color: '#6c7a89' }}>March 15</Text>
             </View>
@@ -63,13 +63,13 @@ const styles = StyleSheet.create({
     location: {
         flex: 0.33,
         flexDirection: 'row',
-        // borderWidth: 1,
         borderColor: '#e8e8e8'
     },
 
     locationTexts: {
         alignSelf: 'flex-start',
         color: '#2e3131',
+        fontSize: (Platform.OS == 'ios' ? 14 : 17),
     },
 
     locationIconHome: {
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 10,
         width: '100%',
         flex: 1,
-        // borderWidth: 1,
+        borderWidth: 1, // For IOS
         borderColor: '#e8e8e8',
         padding: 0,
         backgroundColor: '#fff',
