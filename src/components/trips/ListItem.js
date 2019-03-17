@@ -141,6 +141,8 @@ const styles = StyleSheet.create({
         flex: 1,
         // borderWidth: 1,
         borderColor: '#e8e8e8',
+        padding: 0,
+        backgroundColor: '#fff',
     },
 
 })

@@ -77,26 +77,6 @@ export default class App extends React.Component {
                 <RouterWithRedux>
                     <Scene key="root">
 
-                        {/* Authorized Private Stack */}
-                        <Scene key="private" type="reset" hideNavBar>
-
-                            <Scene key="tabs" tabs hideNavBar hideTabBar>
-                                <Scene key="home" component={homeIndex} title="home" hideNavBar />
-                                <Scene key="trips" tabs initial hideTabBar>
-                                    <Scene key="tripsList" initial component={tripsIndex} hideNavBar />
-                                    <Scene key="tripsCreate" component={tripsCreate} hideNavBar />
-                                </Scene>
-                                <Scene key="bids" component={bidsIndex} title="bids" hideNavBar />
-                                <Scene key="setup" component={setupIndex} title="setup" hideNavBar />
-                            </Scene>
-
-                            <Scene key="main" hideNavBar hideTabBar>
-                                <Scene key="profile" initial component={ProfileIndex} title="profile" hideNavBar />
-                            </Scene>
-
-                        </Scene>
-
-
                         {/* Login Stack */}
                         <Stack key="auth" type="reset" hideNavBar={true}>
                             <Scene key="login" initial component={login} title="login" />
@@ -104,7 +84,22 @@ export default class App extends React.Component {
                             <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
                         </Stack>
 
+                        {/* Authorized Private Stack */}
+                        <Scene key="private" type="reset" hideNavBar>
 
+                            <Scene key="tabs" tabs hideNavBar hideTabBar>
+                                <Scene key="home" initial component={homeIndex} title="home" hideNavBar />
+                                <Scene key="trips" tabs  hideTabBar>
+                                    <Scene key="tripsList" initial component={tripsIndex} hideNavBar />
+                                    <Scene key="tripsCreate" component={tripsCreate} hideNavBar />
+                                </Scene>
+                                <Scene key="bids" component={bidsIndex} title="bids" hideNavBar />
+                                <Scene key="setup" component={setupIndex} title="setup" hideNavBar />
+                            </Scene>
+                            <Scene key="main" hideNavBar hideTabBar>
+                                <Scene key="profile" initial component={ProfileIndex} title="profile" hideNavBar />
+                            </Scene>
+                        </Scene>
 
                     </Scene>
                 </RouterWithRedux>
