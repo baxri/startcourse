@@ -51,10 +51,13 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         borderTopColor: '#bdc3c7',
         height: 70,
+        elevation: 1,
+        
     },
 
     footer: {
         height: 70,
+        elevation: 1,
     },
 
     button: {

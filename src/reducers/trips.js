@@ -17,7 +17,30 @@ const initialState = {
     // Caching with 
   },
   trips: [
-
+    {
+      home: '3000, Notrh St, Columbus OH, 43219',
+      from: 'USA',
+      to: '200, North St, Columbus, OH 43215',
+      dest: 'USA',
+      status: 'Planed',
+      dates: '08/16/2019-09/14/2019'
+    },
+    {
+      home: '3000, Notrh St, Columbus OH, 43219',
+      from: 'USA',
+      to: '200, North St, Columbus, OH 43215',
+      dest: 'USA',
+      status: 'Planed',
+      dates: '08/16/2019-09/14/2019'
+    },
+    {
+      home: '3000, Notrh St, Columbus OH, 43219',
+      from: 'USA',
+      to: '200, North St, Columbus, OH 43215',
+      dest: 'USA',
+      status: 'Planed',
+      dates: '08/16/2019-09/14/2019'
+    }
   ],
 };
 

@@ -43,10 +43,10 @@ const styles = StyleSheet.create({
     },
 
     image: {
-        marginLeft: 30,
+        marginLeft: 15,
         marginRight: 15,
-        width: 100,
-        height: 100,
+        width: 110,
+        height: 110,
         borderRadius: 100,
     },
 

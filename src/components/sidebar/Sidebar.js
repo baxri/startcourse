@@ -26,7 +26,7 @@ export default class Sidebar extends Component {
                     <Button iconLeft transparent style={styles.menuItems} onPress={() => {
 
                         closeDrawer();
-                        Actions.profile();
+                        Actions.main();
                         setTimeout(() => {
                            
                         }, 300)

@@ -76,14 +76,6 @@ export default class App extends React.Component {
                 <RouterWithRedux>
                     <Scene key="root">
 
-                        {/* Authorized Private Stack */}
-                        <Stack key="private" type="reset" tabs hideNavBar hideTabBar>
-                            <Scene key="home" initial component={homeIndex} title="home" hideNavBar />
-                            <Scene key="trips" component={tripsIndex} title="trips" hideNavBar />
-                            <Scene key="bids" component={bidsIndex} title="bids" hideNavBar />
-                            <Scene key="setup" component={setupIndex} title="setup" hideNavBar />
-                            <Scene key="profile" component={ProfileIndex} title="profile" hideNavBar />
-                        </Stack>
 
                         {/* Login Stack */}
                         <Stack key="auth" type="reset" hideNavBar={true}>
@@ -91,6 +83,23 @@ export default class App extends React.Component {
                             <Scene key="register" component={register} title="register" />
                             <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
                         </Stack>
+
+                        {/* Authorized Private Stack */}
+                        <Stack key="private" type="reset" tabs hideNavBar hideTabBar>
+
+                            <Stack key="tabs" tabs hideNavBar hideTabBar>
+                                <Scene key="home" initial component={homeIndex} title="home" hideNavBar />
+                                <Scene key="trips"  component={tripsIndex} title="trips" hideNavBar />
+                                <Scene key="bids" component={bidsIndex} title="bids" hideNavBar />
+                                <Scene key="setup" component={setupIndex} title="setup" hideNavBar />
+                            </Stack>
+
+                            <Stack key="main" hideNavBar hideTabBar>
+                                <Scene key="profile" initial component={ProfileIndex} title="profile" hideNavBar />
+                            </Stack>
+
+                        </Stack>
+
 
                     </Scene>
                 </RouterWithRedux>

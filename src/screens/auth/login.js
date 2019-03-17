@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         backgroundColor: '#19b5fe',
         elevation: 0,
+        borderRadius: 5,
     },
 
     buttonForgot: {

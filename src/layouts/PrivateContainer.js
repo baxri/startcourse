@@ -51,6 +51,7 @@ export default class PrivateContainer extends Component {
     }
 }
 
+
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
