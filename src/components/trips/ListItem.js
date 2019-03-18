@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 
 export default function ListViewItem({ item }) {
     return (
-        <ListItem style={styles.listitem} onPress={() => Actions.tripsDetails()}>
+        <ListItem style={styles.listitem}>
             <View style={styles.header}>
                 <Text style={{ color: '#6c7a89' }}>March 15</Text>
             </View>
@@ -38,6 +38,13 @@ export default function ListViewItem({ item }) {
                         <Text style={styles.label}>From - to</Text>
                         <Text style={styles.locationTexts}>{item.dates}</Text>
                     </View>
+                </View>
+
+                <View style={styles.details}>
+                    <Button primary iconRight style={styles.detailsButton} onPress={() => Actions.tripsDetails()}>
+                        <Text>Details</Text>
+                        <Icon name='arrow-forward' />
+                    </Button>
                 </View>
 
             </View>
@@ -89,6 +96,24 @@ const styles = StyleSheet.create({
         borderColor: '#e8e8e8'
     },
 
+    details: {
+        // borderWidth: 1,
+        flexDirection: 'row',
+        flex: 0.33,
+        borderColor: '#e8e8e8',
+        justifyContent: 'flex-end',
+
+    },
+
+    detailsButton: {
+        marginRight: 10,
+        marginTop: 10,
+        backgroundColor: '#19b5fe',
+        elevation: 0,
+        borderRadius: 5,
+        height: 40,
+    },
+
     statusLeft: {
         paddingLeft: 30,
         flex: 0.4,
@@ -112,7 +137,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         flex: 1,
         flexDirection: 'column',
-        height: 260,
+        height: 300,
 
         marginLeft: 15,
         marginRight: 15,
