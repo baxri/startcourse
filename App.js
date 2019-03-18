@@ -78,13 +78,19 @@ export default class App extends React.Component {
                 <RouterWithRedux>
                     <Scene key="root">
 
+                        {/* Login Stack */}
+                        <Stack key="auth" type="reset" hideNavBar={true}>
+                            <Scene key="login" initial component={login} title="login"/>
+                            <Scene key="register" component={register} title="register"/>
+                            <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword"/>
+                        </Stack>
 
                         {/* Authorized Private Stack */}
                         <Scene key="private" type="reset" hideNavBar>
                             <Scene key="tabs" tabs hideNavBar hideTabBar>
-                                <Scene key="home"  component={homeIndex} title="home" hideNavBar/>
-                                <Scene key="trips" initial tabs hideTabBar>
-                                    <Scene key="tripsList"  initial component={tripsIndex} hideNavBar/>
+                                <Scene key="home" initial component={homeIndex} title="home" hideNavBar/>
+                                <Scene key="trips" tabs hideTabBar>
+                                    <Scene key="tripsList" initial component={tripsIndex} hideNavBar/>
                                     <Scene key="tripsCreate" component={tripsCreate} hideNavBar/>
                                     <Scene key="tripsDetails" component={tripsDetails} hideNavBar/>
                                 </Scene>
@@ -95,15 +101,6 @@ export default class App extends React.Component {
                                 <Scene key="profile" initial component={ProfileIndex} title="profile" hideNavBar/>
                             </Scene>
                         </Scene>
-
-
-                        {/* Login Stack */}
-                        <Stack key="auth" type="reset" hideNavBar={true}>
-                            <Scene key="login" initial component={login} title="login"/>
-                            <Scene key="register" component={register} title="register"/>
-                            <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword"/>
-                        </Stack>
-
 
                     </Scene>
                 </RouterWithRedux>
