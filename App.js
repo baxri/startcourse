@@ -23,6 +23,12 @@ import bidsIndex from "./src/screens/private/bids";
 import setupIndex from "./src/screens/private/setup";
 import ProfileIndex from "./src/screens/private/profile";
 
+const TabIcon = ({selected, title}) => {
+    return (
+      <Text style={{color: selected ? 'red' : 'blue'}}>{title}</Text>
+    );
+}
+
 export default class App extends React.Component {
 
     constructor(props) {
@@ -78,6 +84,28 @@ export default class App extends React.Component {
                 <RouterWithRedux>
                     <Scene key="root">
 
+
+                        {/* Authorized Private Stack */}
+                        <Scene key="private" type="reset" hideNavBar>
+
+
+                            <Scene key="tabs" tabs hideNavBar hideTabBar={false}>
+                                <Scene key="home" initial component={homeIndex} title="home" hideNavBar icon={TabIcon}/>
+                                <Scene key="trips" tabs>
+                                    <Scene key="tripsList" component={tripsIndex} hideNavBar hideTabBar/>
+                                    <Scene key="tripsCreate" component={tripsCreate} hideNavBa hideTabBarr/>
+                                    <Scene key="tripsDetails" component={tripsDetails} hideNavBar hideTabBar/>
+                                </Scene>
+                                <Scene key="bids" component={bidsIndex} title="bids" hideNavBar icon={TabIcon}/>
+                                <Scene key="setup" component={setupIndex} title="setup" hideNavBar icon={TabIcon}/>
+                            </Scene>
+
+                            <Scene key="main" hideNavBar hideTabBar>
+                                <Scene key="profile" initial component={ProfileIndex} title="profile" hideNavBar/>
+                            </Scene>
+                        </Scene>
+
+
                         {/* Login Stack */}
                         <Stack key="auth" type="reset" hideNavBar={true}>
                             <Scene key="login" initial component={login} title="login"/>
@@ -85,22 +113,6 @@ export default class App extends React.Component {
                             <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword"/>
                         </Stack>
 
-                        {/* Authorized Private Stack */}
-                        <Scene key="private" type="reset" hideNavBar>
-                            <Scene key="tabs" tabs hideNavBar hideTabBar>
-                                <Scene key="home" initial component={homeIndex} title="home" hideNavBar/>
-                                <Scene key="trips" tabs hideTabBar>
-                                    <Scene key="tripsList" initial component={tripsIndex} hideNavBar/>
-                                    <Scene key="tripsCreate" component={tripsCreate} hideNavBar/>
-                                    <Scene key="tripsDetails" component={tripsDetails} hideNavBar/>
-                                </Scene>
-                                <Scene key="bids" component={bidsIndex} title="bids" hideNavBar/>
-                                <Scene key="setup" component={setupIndex} title="setup" hideNavBar/>
-                            </Scene>
-                            <Scene key="main" hideNavBar hideTabBar>
-                                <Scene key="profile" initial component={ProfileIndex} title="profile" hideNavBar/>
-                            </Scene>
-                        </Scene>
 
                     </Scene>
                 </RouterWithRedux>
