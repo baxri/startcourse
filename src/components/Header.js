@@ -1,13 +1,13 @@
 import React from 'react';
 import { Icon, Text } from 'native-base';
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
-import { Actions } from "react-native-router-flux";
+import { Actions, Drawer } from "react-native-router-flux";
 
 function Header({ title, openDrawer, showBack }) {
     return (
         <View style={styles.header}>
 
-            {!showBack && <TouchableOpacity onPress={openDrawer}>
+            {!showBack && <TouchableOpacity onPress={() => { Actions.drawerOpen() }}>
                 <Icon name="menu" type="Feather" style={{ color: '#19b5fe' }} />
             </TouchableOpacity>}
 

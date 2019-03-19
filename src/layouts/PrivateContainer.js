@@ -33,20 +33,14 @@ export default class PrivateContainer extends Component {
         const { children, showTabs, showBack, active, disableHeader } = this.props;
 
         return (
-            <Drawer
-                ref={(ref) => { this.drawer = ref; }}
-                content={<SideBar closeDrawer={this.closeDrawer} />}
-                onClose={() => this.closeDrawer()}
-            >
-                <Container style={styles.container} onLayout={this._onLayout.bind(this)}>
-                    {!disableHeader && <Header openDrawer={this.openDrawer} showBack={showBack} />}
-                    <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-                        {children}
-                    </KeyboardAvoidingView>
-                    {showTabs == true && <FooterTabs active={active} />}
-                </Container >
+            <Container style={styles.container} onLayout={this._onLayout.bind(this)}>
                 <FlashMessage position="top" />
-            </Drawer>
+                {!disableHeader && <Header openDrawer={this.openDrawer} showBack={showBack} />}
+                <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+                    {children}
+                </KeyboardAvoidingView>
+                {showTabs == true && <FooterTabs active={active} />}
+            </Container >
         )
     }
 }

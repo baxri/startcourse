@@ -23,25 +23,11 @@ export default class Sidebar extends Component {
                         <Icon name='home' type="AntDesign" style={styles.menuItemsIconActive} />
                         <Text uppercase={false} style={styles.menuItemsTextActive}>Home</Text>
                     </Button>
-                    <Button iconLeft transparent style={styles.menuItems} onPress={() => {
-
-                        closeDrawer();
-                        Actions.main();
-                        setTimeout(() => {
-                           
-                        }, 300)
-                    }}>
+                    <Button iconLeft transparent style={styles.menuItems} onPress={() => { Actions.main(); }}>
                         <Icon name='user' type="SimpleLineIcons" style={styles.menuItemsIcon} />
                         <Text uppercase={false} style={styles.menuItemsText}>Profile</Text>
                     </Button>
-                    <Button iconLeft transparent style={styles.menuItems} onPress={() => {
-
-                        closeDrawer();
-                        Actions.setup();
-                        setTimeout(() => {
-                            
-                        }, 300)
-                    }}>
+                    <Button iconLeft transparent style={styles.menuItems} onPress={() => { Actions.setup(); }}>
                         <Icon name='settings' type="SimpleLineIcons" style={styles.menuItemsIcon} />
                         <Text uppercase={false} style={styles.menuItemsText}>Settings</Text>
                     </Button>
@@ -64,7 +50,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
-    
+
 
     avatarContainer: {
         flex: 0.3,
