@@ -352,7 +352,6 @@ const styles = StyleSheet.create({
     checkbox: { marginLeft: -25 },
     checkboxIos: { width: 10,  },
 
-
     formContainer: {
         paddingHorizontal: 30,
         flex: 1,

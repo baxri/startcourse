@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import {StyleSheet, View, RefreshControl, ListView, TouchableOpacity, Platform, Dimensions, Image} from 'react-native'
-import {Content, List, Button, Icon, ListItem, Text, CheckBox, Body, Item, Input, DatePicker} from 'native-base';
-import {connect} from "react-redux";
-import {MapView} from 'expo';
+import React, { Component } from 'react'
+import { StyleSheet, View, RefreshControl, ListView, TouchableOpacity, Platform, Dimensions, Image } from 'react-native'
+import { Content, List, Button, Icon, ListItem, Text, CheckBox, Body, Item, Input, DatePicker } from 'native-base';
+import { connect } from "react-redux";
+import { MapView } from 'expo';
 import Carousel from 'react-native-snap-carousel';
 
 import PrivateContainer from "../../../layouts/PrivateContainer";
@@ -66,18 +66,18 @@ class TripsDetails extends Component {
         console.log("snapped to ", index)
     }
 
-    _renderItem = ({item, index}) => {
+    _renderItem = ({ item, index }) => {
         console.log("rendering,", index, item)
         return (
-            <View style={{justifyContent: 'center', alignItems: 'center', width: 256, height: 200,}}>
+            <View style={{ justifyContent: 'center', alignItems: 'center', width: 256, height: 200, }}>
                 <View
                     onPress={() => {
                         console.log("clicked to index", index)
                         this._carousel.snapToItem(index);
-                    }}
-                >
-                    <Image style={{width: 256, height: 160, borderRadius: 10}}
-                           source={{uri: item.thumbnail}}/>
+                    }}>
+
+                    <Image style={{ width: 256, height: 160, borderRadius: 10 }}
+                        source={{ uri: item.thumbnail }} />
                 </View>
             </View>
         );
@@ -85,14 +85,14 @@ class TripsDetails extends Component {
 
     render() {
 
-        const {loading} = this.state;
+        const { loading } = this.state;
 
         return (
             <PrivateContainer showTabs active="trip" showBack={true}>
                 <Content>
 
                     <MapView
-                        style={{flex: 1, height: 300,}}
+                        style={{ flex: 1, height: 300, }}
                         initialRegion={{
                             latitude: 37.78825,
                             longitude: -122.4324,
@@ -141,13 +141,13 @@ class TripsDetails extends Component {
                     <View style={styles.actionContainer}>
                         <View style={styles.actionContainerLeft}>
                             <TouchableOpacity style={styles.minus}>
-                                <Text style={{color: '#6c7a89'}}>-</Text>
+                                <Text style={{ color: '#6c7a89' }}>-</Text>
                             </TouchableOpacity>
                             <View style={styles.value}>
-                                <Text style={{color: '#6c7a89', fontWeight: 'bold',}}>$400</Text>
+                                <Text style={{ color: '#6c7a89', fontWeight: 'bold', }}>$400</Text>
                             </View>
                             <TouchableOpacity style={styles.plus}>
-                                <Text style={{color: '#6c7a89'}}>+</Text>
+                                <Text style={{ color: '#6c7a89' }}>+</Text>
                             </TouchableOpacity>
                         </View>
 
@@ -156,7 +156,7 @@ class TripsDetails extends Component {
                                 loading={loading}
                                 onPress={this.next}
                                 style={styles.buttonRemove}
-                                textStyle={styles.buttonText} title="Remove"/>
+                                textStyle={styles.buttonText} title="Remove" />
                         </View>
                     </View>
 
@@ -165,7 +165,7 @@ class TripsDetails extends Component {
                     loading={loading}
                     onPress={this.next}
                     style={styles.button}
-                    textStyle={styles.buttonText} title="Next"/>
+                    textStyle={styles.buttonText} title="Next" />
             </PrivateContainer>
         );
     }
