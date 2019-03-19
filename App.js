@@ -1,11 +1,11 @@
-import {Ionicons} from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import {Router, Scene, Lightbox, Modal, Stack} from 'react-native-router-flux';
-import {connect, Provider} from 'react-redux';
-import {AppLoading, Asset, Font} from 'expo';
+import { Router, Scene, Lightbox, Modal, Stack } from 'react-native-router-flux';
+import { connect, Provider } from 'react-redux';
+import { AppLoading, Asset, Font } from 'expo';
 
 import configureStore from './src/store/index';
-import {Text, Image} from "react-native";
+import { Text, Image } from "react-native";
 
 const store = configureStore()
 const RouterWithRedux = connect()(Router);
@@ -23,9 +23,9 @@ import bidsIndex from "./src/screens/private/bids";
 import setupIndex from "./src/screens/private/setup";
 import ProfileIndex from "./src/screens/private/profile";
 
-const TabIcon = ({selected, title}) => {
+const TabIcon = ({ selected, title }) => {
     return (
-      <Text style={{color: selected ? 'red' : 'blue'}}>{title}</Text>
+        <Text style={{ color: selected ? 'red' : 'blue' }}>{title}</Text>
     );
 }
 
@@ -66,7 +66,7 @@ export default class App extends React.Component {
     };
 
     _handleFinishLoading = () => {
-        this.setState({isLoadingComplete: true});
+        this.setState({ isLoadingComplete: true });
     };
 
     render() {
@@ -84,35 +84,29 @@ export default class App extends React.Component {
                 <RouterWithRedux>
                     <Scene key="root">
 
+                        {/* Login Stack */}
+                        <Stack key="auth" type="reset" hideNavBar={true}>
+                            <Scene key="login" initial component={login} title="login" />
+                            <Scene key="register" component={register} title="register" />
+                            <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
+                        </Stack>
 
                         {/* Authorized Private Stack */}
                         <Scene key="private" type="reset" hideNavBar>
-
-
                             <Scene key="tabs" tabs hideNavBar hideTabBar={true}>
-                                <Scene key="home"  component={homeIndex} title="home" hideNavBar icon={TabIcon}/>
-                                <Scene key="trips" tabs initial hideNavBar>
-                                    <Scene key="tripsList"  component={tripsIndex} hideNavBar hideTabBar/>
-                                    <Scene key="tripsCreate" initial component={tripsCreate} hideNavBar hideTabBar/>
-                                    <Scene key="tripsDetails" component={tripsDetails} hideNavBar hideTabBar/>
+                                <Scene key="home" initial component={homeIndex} title="home" hideNavBar icon={TabIcon} />
+                                <Scene key="trips" tabs hideNavBar>
+                                    <Scene key="tripsList" initial component={tripsIndex} hideNavBar hideTabBar />
+                                    <Scene key="tripsCreate" component={tripsCreate} hideNavBar hideTabBar />
+                                    <Scene key="tripsDetails" component={tripsDetails} hideNavBar hideTabBar />
                                 </Scene>
-                                <Scene key="bids" component={bidsIndex} title="bids" hideNavBar icon={TabIcon}/>
-                                <Scene key="setup" component={setupIndex} title="setup" hideNavBar icon={TabIcon}/>
+                                <Scene key="bids" component={bidsIndex} title="bids" hideNavBar icon={TabIcon} />
+                                <Scene key="setup" component={setupIndex} title="setup" hideNavBar icon={TabIcon} />
                             </Scene>
-
                             <Scene key="main" hideNavBar hideTabBar>
-                                <Scene key="profile" initial component={ProfileIndex} title="profile" hideNavBar/>
+                                <Scene key="profile" initial component={ProfileIndex} title="profile" hideNavBar />
                             </Scene>
                         </Scene>
-
-
-                        {/* Login Stack */}
-                        <Stack key="auth" type="reset" hideNavBar={true}>
-                            <Scene key="login" initial component={login} title="login"/>
-                            <Scene key="register" component={register} title="register"/>
-                            <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword"/>
-                        </Stack>
-
 
                     </Scene>
                 </RouterWithRedux>
