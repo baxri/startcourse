@@ -89,11 +89,11 @@ export default class App extends React.Component {
                         <Scene key="private" type="reset" hideNavBar>
 
 
-                            <Scene key="tabs" tabs hideNavBar hideTabBar={false}>
-                                <Scene key="home" initial component={homeIndex} title="home" hideNavBar icon={TabIcon}/>
-                                <Scene key="trips" tabs>
-                                    <Scene key="tripsList" component={tripsIndex} hideNavBar hideTabBar/>
-                                    <Scene key="tripsCreate" component={tripsCreate} hideNavBa hideTabBarr/>
+                            <Scene key="tabs" tabs hideNavBar hideTabBar={true}>
+                                <Scene key="home"  component={homeIndex} title="home" hideNavBar icon={TabIcon}/>
+                                <Scene key="trips" tabs initial hideNavBar>
+                                    <Scene key="tripsList"  component={tripsIndex} hideNavBar hideTabBar/>
+                                    <Scene key="tripsCreate" initial component={tripsCreate} hideNavBar hideTabBar/>
                                     <Scene key="tripsDetails" component={tripsDetails} hideNavBar hideTabBar/>
                                 </Scene>
                                 <Scene key="bids" component={bidsIndex} title="bids" hideNavBar icon={TabIcon}/>

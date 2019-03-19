@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, RefreshControl, ListView, TouchableOpacity, Platform, Dimensions } from 'react-native'
-import { Content, List, Button, Icon, ListItem, Text, CheckBox, Body, Item, Input, DatePicker } from 'native-base';
+import { StyleSheet, View, RefreshControl, ListView, TouchableOpacity, Platform, Dimensions, Keyboard, KeyboardAvoidingView, TextInput } from 'react-native'
+import { Content, List, Button, Icon, ListItem, Text, CheckBox, Radio, Body, Item, Input, DatePicker } from 'native-base';
 import { connect } from "react-redux";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 import PrivateContainer from "../../../layouts/PrivateContainer";
 import ButtonLoader from "../../../components/ButtonLoader";
+
+const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } } };
+const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } } };
+
+const GOOGLE_API_KEY = 'AIzaSyA2xyrDSw6pndpokaymwV2eW6d_JuT4-yo';
 
 class TripsCreate extends Component {
 
@@ -32,6 +39,7 @@ class TripsCreate extends Component {
 
     setFromDate = (date) => {
         this.setState({ fromDate: date });
+
     }
 
     setToDate = (date) => {
@@ -42,14 +50,29 @@ class TripsCreate extends Component {
 
     }
 
+    componentWillMount() {
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
+    }
+
+    _keyboardDidShow = () => {
+
+    }
+
+    _keyboardDidHide() {
+    }
 
     render() {
 
-        const { fromDate, toDate, tripType, loading } = this.state;
+        const { leaveDate, toDate, tripType, loading } = this.state;
 
         return (
             <PrivateContainer showTabs active="trip" showBack={true}>
-                <Content>
+
+                <KeyboardAwareScrollView keyboardShouldPersistTaps={'always'}
+                    ref="flatList1"
+
+                >
 
                     <View style={styles.choosetype}>
                         <View style={styles.header}>
@@ -59,7 +82,7 @@ class TripsCreate extends Component {
                         <View style={styles.body}>
                             <TouchableOpacity style={Platform.OS == 'android' ? styles.triptypeAndroid : styles.triptypeIos}>
                                 <ListItem style={styles.listitem} onPress={() => this.chooseTripType(1)}>
-                                    <CheckBox checked={tripType === 1} style={Platform.OS == "android" ? styles.checkbox : {}} />
+                                    <Radio selected={tripType === 1} style={Platform.OS == "android" ? styles.checkbox : styles.checkboxIos} />
                                     <Body>
                                         <Text>Round Trip</Text>
                                     </Body>
@@ -68,7 +91,7 @@ class TripsCreate extends Component {
                             <TouchableOpacity style={Platform.OS == 'android' ? styles.triptypeAndroid : styles.triptypeIos}>
 
                                 <ListItem style={styles.listitem} onPress={() => this.chooseTripType(2)}>
-                                    <CheckBox checked={tripType === 2} style={Platform.OS == "android" ? styles.checkbox : {}} />
+                                    <Radio selected={tripType === 2} style={Platform.OS == "android" ? styles.checkbox : styles.checkboxIos} />
                                     <Body>
                                         <Text>One Way Trip to Destination</Text>
                                     </Body>
@@ -76,7 +99,7 @@ class TripsCreate extends Component {
                             </TouchableOpacity>
                             <TouchableOpacity style={Platform.OS == 'android' ? styles.triptypeAndroid : styles.triptypeIos}>
                                 <ListItem style={styles.listitem} onPress={() => this.chooseTripType(3)}>
-                                    <CheckBox checked={tripType === 3} style={Platform.OS == "android" ? styles.checkbox : {}} />
+                                    <Radio selected={tripType === 3} style={Platform.OS == "android" ? styles.checkbox : styles.checkboxIos} />
                                     <Body>
                                         <Text>One Way Trip from Home</Text>
                                     </Body>
@@ -87,46 +110,171 @@ class TripsCreate extends Component {
 
                     <View style={styles.formContainer}>
 
-                        <Item style={styles.inputItemDate}>
-                            <DatePicker
-                                locale={"en"}
-                                modalTransparent={false}
-                                animationType={"fade"}
-                                androidMode={"default"}
-                                placeHolderText="Leave Date"
-                                textStyle={styles.datePlaceholder}
-                                placeHolderTextStyle={styles.datePlaceholder}
-                                onDateChange={this.setFromDate}
-                                disabled={false}
-                            />
-                            <Icon name='calendar' type="SimpleLineIcons" />
-                        </Item>
-                        <Item style={styles.inputItemDate}>
-                            <DatePicker
-                                locale={"en"}
-                                modalTransparent={false}
-                                animationType={"fade"}
-                                androidMode={"default"}
-                                placeHolderText="Return Date"
-                                textStyle={styles.datePlaceholder}
-                                placeHolderTextStyle={styles.datePlaceholder}
-                                onDateChange={this.setToDate}
-                                disabled={false}
-                            />
-                            <Icon name='calendar' type="SimpleLineIcons" />
-                        </Item>
-                        <Item style={styles.inputItem}>
-                            <Input placeholder='From' style={styles.input} onChangeText={(val) => this.handleChange('from', val)} />
-                            <Icon name='home' type="AntDesign" />
-                        </Item>
-                        <Item style={styles.inputItem}>
-                            <Input placeholder='To' style={styles.input} onChangeText={(val) => this.handleChange('to', val)} />
-                            <Icon name='map-pin' type="Feather" style={styles.locationIconPin} />
-                        </Item>
+                        <KeyboardAvoidingView>
+
+                            <Item style={styles.inputItem}>
+                                <GooglePlacesAutocomplete
+                                    styles={{
+                                        textInputContainer: {
+                                            backgroundColor: '#fff',
+                                            borderTopWidth: 0,
+                                            borderBottomWidth: 0,
+                                        },
+                                        textInput: {
+                                            marginLeft: 0,
+                                            marginRight: 0,
+                                            height: 38,
+                                            color: '#5d5d5d',
+                                            fontSize: 18,
+                                        },
+                                    }}
+
+                                    placeholder='From'
+                                    minLength={2} // minimum length of text to search
+                                    autoFocus={false}
+                                    // returnKeyType={'search'} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
+                                    keyboardAppearance={'light'} // Can be left out for default keyboardAppearance https://facebook.github.io/react-native/docs/textinput.html#keyboardappearance
+                                    listViewDisplayed='false'    // true/false/undefined
+                                    fetchDetails={true}
+                                    renderDescription={row => row.description} // custom description render
+                                    onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
+                                        console.log(data, details);
+                                    }}
+
+                                    getDefaultValue={() => ''}
+
+                                    query={{
+                                        // available options: https://developers.google.com/places/web-service/autocomplete
+                                        key: GOOGLE_API_KEY,
+                                        language: 'en', // language of the results
+                                        types: '(cities)' // default: 'geocode'
+                                    }}
+
+                                    // currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
+                                    // currentLocationLabel="Current location"
+                                    nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
+                                    GoogleReverseGeocodingQuery={{
+                                        // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
+                                    }}
+                                    GooglePlacesSearchQuery={{
+                                        // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
+                                        rankby: 'distance',
+                                        type: 'cafe'
+                                    }}
+
+                                    GooglePlacesDetailsQuery={{
+                                        // available options for GooglePlacesDetails API : https://developers.google.com/places/web-service/details
+                                        fields: 'formatted_address',
+                                    }}
+
+                                    filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
+                                    // predefinedPlaces={[homePlace, workPlace]}
+                                    debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
+                                // renderLeftButton={() => <Text>LEFT</Text>}
+                                // renderRightButton={() => <Text>Custom text after the input</Text>}
+                                />
+
+                                <Icon name='home' type="AntDesign" />
+                            </Item>
+                            <Item style={styles.inputItem}>
+                                <GooglePlacesAutocomplete
+                                    styles={{
+                                        textInputContainer: {
+                                            backgroundColor: '#fff',
+                                            borderTopWidth: 0,
+                                            borderBottomWidth: 0,
+                                        },
+                                        textInput: {
+                                            marginLeft: 0,
+                                            marginRight: 0,
+                                            height: 38,
+                                            color: '#5d5d5d',
+                                            fontSize: 18,
+                                        },
+                                    }}
+
+                                    placeholder='To'
+                                    minLength={2} // minimum length of text to search
+                                    autoFocus={false}
+                                    // returnKeyType={'search'} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
+                                    keyboardAppearance={'light'} // Can be left out for default keyboardAppearance https://facebook.github.io/react-native/docs/textinput.html#keyboardappearance
+                                    listViewDisplayed='false'     // true/false/undefined
+                                    fetchDetails={true}
+                                    renderDescription={row => row.description} // custom description render
+                                    onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
+                                        console.log(data, details);
+                                    }}
+
+                                    getDefaultValue={() => ''}
+
+                                    query={{
+                                        // available options: https://developers.google.com/places/web-service/autocomplete
+                                        key: GOOGLE_API_KEY,
+                                        language: 'en', // language of the results
+                                        types: '(cities)' // default: 'geocode'
+                                    }}
+
+                                    // currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
+                                    // currentLocationLabel="Current location"
+                                    nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
+                                    GoogleReverseGeocodingQuery={{
+                                        // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
+                                    }}
+                                    GooglePlacesSearchQuery={{
+                                        // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
+                                        rankby: 'distance',
+                                        type: 'cafe'
+                                    }}
+
+                                    GooglePlacesDetailsQuery={{
+                                        // available options for GooglePlacesDetails API : https://developers.google.com/places/web-service/details
+                                        fields: 'formatted_address',
+                                    }}
+
+                                    filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
+                                    // predefinedPlaces={[homePlace, workPlace]}
+                                    debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
+                                // renderLeftButton={() => <Text>LEFT</Text>}
+                                // renderRightButton={() => <Text>Custom text after the input</Text>}
+                                />
+                                <Icon name='map-pin' type="Feather" style={styles.locationIconPin} />
+                            </Item>
+
+                            <Item style={styles.inputItemDate}>
+                                <DatePicker
+                                    locale={"en"}
+                                    modalTransparent={false}
+                                    animationType={"fade"}
+                                    androidMode={"default"}
+                                    placeHolderText="Leave Date"
+                                    textStyle={styles.datePlaceholder}
+                                    placeHolderTextStyle={styles.datePlaceholder}
+                                    onDateChange={this.setFromDate}
+                                    disabled={false}
+                                />
+                                <Icon name='calendar' type="SimpleLineIcons" />
+                            </Item>
+                            <Item style={styles.inputItemDate}>
+                                <DatePicker
+                                    locale={"en"}
+                                    modalTransparent={false}
+                                    animationType={"fade"}
+                                    androidMode={"default"}
+                                    placeHolderText="Return Date"
+                                    textStyle={styles.datePlaceholder}
+                                    placeHolderTextStyle={styles.datePlaceholder}
+                                    onDateChange={this.setToDate}
+                                    disabled={false}
+                                />
+                                <Icon name='calendar' type="SimpleLineIcons" />
+                            </Item>
+                        </KeyboardAvoidingView>
+
+
                     </View>
 
 
-                </Content>
+                </KeyboardAwareScrollView>
                 <ButtonLoader
                     loading={loading}
                     onPress={this.next}
@@ -188,7 +336,7 @@ const styles = StyleSheet.create({
         flex: 1,
         borderColor: '#e8e8e8',
         justifyContent: 'center',
-        marginLeft: 15,
+        marginLeft: 20,
     },
 
     triptypeIos: {
@@ -202,6 +350,7 @@ const styles = StyleSheet.create({
     },
 
     checkbox: { marginLeft: -25 },
+    checkboxIos: { width: 10,  },
 
 
     formContainer: {
@@ -227,7 +376,7 @@ const styles = StyleSheet.create({
     },
 
     datePlaceholder: {
-        color: "#2e3131",
+        color: "#bdc3c7",
         width: (Dimensions.get('window').width - 95),
         fontSize: 17,
     },
