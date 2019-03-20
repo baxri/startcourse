@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, StyleSheet, View, ActivityIndicator } from 'react-native'
 import { Button } from "native-base";
-import { ActivityIndicator } from "react-native";
 
 export default class ButtonLoader extends Component {
     render() {

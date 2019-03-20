@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet, View, RefreshControl, ListView, Platform } from 'react-native'
-import { Content, List, Button, Icon, ListItem, Text } from 'native-base';
+import { StyleSheet, View, Platform } from 'react-native'
+import { Button, Icon, ListItem, Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 export default function ListViewItem({ item }) {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     locationTexts: {
         alignSelf: 'flex-start',
         color: '#2e3131',
-        fontSize: (Platform.OS == 'ios' ? 14 : 17),
+        fontSize: (Platform.OS == 'ios' ? 14 : 15),
     },
 
     locationIconHome: {
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         flex: 1,
         flexDirection: 'column',
-        height: 300,
+        height: 290,
 
         marginLeft: 15,
         marginRight: 15,
@@ -148,6 +148,7 @@ const styles = StyleSheet.create({
         paddingTop: -15,
         paddingBottom: -15,
     },
+
 
     header: {
         flexDirection: 'row',

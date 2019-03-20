@@ -7,6 +7,8 @@ import Header from "../components/Header";
 import FooterTabs from "../components/auth/FooterTabs";
 import SideBar from "../components/sidebar/Sidebar";
 
+import ContentLoader from "../components/ContentLoader";
+
 export default class PrivateContainer extends Component {
 
     constructor(props) {
@@ -30,14 +32,17 @@ export default class PrivateContainer extends Component {
     }
 
     render() {
-        const { children, showTabs, showBack, active, disableHeader } = this.props;
+        const { children, showTabs, showBack, active, disableHeader, contentLoader } = this.props;
 
         return (
             <Container style={styles.container} onLayout={this._onLayout.bind(this)}>
                 <FlashMessage position="top" />
+
                 {!disableHeader && <Header openDrawer={this.openDrawer} showBack={showBack} />}
+
                 <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-                    {children}
+                    {contentLoader && <ContentLoader />}
+                    {!contentLoader && children}
                 </KeyboardAvoidingView>
                 {showTabs == true && <FooterTabs active={active} />}
             </Container >

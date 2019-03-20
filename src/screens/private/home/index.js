@@ -12,10 +12,16 @@ class homeIndex extends Component {
         super(props)
 
         this.state = {
+            contentLoader: true,
             selectedStartDate: null,
         }
     }
 
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({ contentLoader: false });
+        }, 200);
+    }
 
     onDateChange = (date) => {
         this.setState({
@@ -27,7 +33,7 @@ class homeIndex extends Component {
 
         const { token } = this.props;
 
-        const { selectedStartDate } = this.state;
+        const { selectedStartDate, contentLoader } = this.state;
         const startDate = selectedStartDate ? selectedStartDate.toString() : '';
 
         const toDay = new Date().toISOString().split('T');
@@ -41,7 +47,7 @@ class homeIndex extends Component {
         activeToday[toDay[0]] = { selected: true, color: '#19b5fe', textColor: '#fff' };
 
         return (
-            <PrivateContainer showTabs active="home">
+            <PrivateContainer showTabs active="home" contentLoader={contentLoader}>
                 <Calendar
 
                     // markingType={'custom'}

@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignContent: 'center',
         justifyContent: 'space-between',
-        borderBottomWidth: 1,
+        borderBottomWidth: 0.2,
         borderBottomColor: '#bdc3c7',
         backgroundColor: 'white',
         elevation: 1,

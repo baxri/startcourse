@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, RefreshControl, ListView } from 'react-native'
+import { Text, StyleSheet, View, RefreshControl, ListView, ActivityIndicator } from 'react-native'
 import { connect } from "react-redux";
 import { Content, List, Button, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-
 
 import PrivateContainer from "../../../layouts/PrivateContainer";
 import ListItem from "../../../components/trips/ListItem";
@@ -16,9 +15,15 @@ class TripsIndex extends Component {
         this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
         this.state = {
+            contentLoader: true,
             loading: false,
         }
+    }
 
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({ contentLoader: false });
+        }, 200);
     }
 
     _onRefresh() {
@@ -30,9 +35,10 @@ class TripsIndex extends Component {
     render() {
 
         const { trips } = this.props;
+        const { contentLoader } = this.state;
 
         return (
-            <PrivateContainer showTabs active="trip">
+            <PrivateContainer showTabs active="trip" contentLoader={contentLoader}>
                 <Content refreshControl={<RefreshControl refreshing={this.state.loading} onRefresh={() => { this._onRefresh() }} />}>
 
                     <List

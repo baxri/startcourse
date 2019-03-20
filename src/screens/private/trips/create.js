@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, RefreshControl, ListView, TouchableOpacity, Platform, Dimensions, Keyboard, KeyboardAvoidingView, TextInput } from 'react-native'
-import { Content, List, Button, Icon, ListItem, Text, CheckBox, Radio, Body, Item, Input, DatePicker } from 'native-base';
+import { StyleSheet, View, TouchableOpacity, Platform, Dimensions, Keyboard, KeyboardAvoidingView } from 'react-native'
+import { Icon, ListItem, Text, Radio, Body, Item, DatePicker } from 'native-base';
 import { connect } from "react-redux";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -26,6 +26,7 @@ class TripsCreate extends Component {
             to: '',
 
             loading: false,
+            scrolled: false,
         };
     }
 
@@ -57,14 +58,24 @@ class TripsCreate extends Component {
 
     _keyboardDidShow = () => {
 
+        const { scrolled } = this.state;
+
+        if (!scrolled) {
+            setTimeout(() => {
+                this.refs.flatList1.scrollToEnd();
+            }, 100)
+
+            this.setState({ scrolled: true });
+        }
     }
 
     _keyboardDidHide() {
     }
 
+
     render() {
 
-        const { leaveDate, toDate, tripType, loading } = this.state;
+        const { tripType, loading } = this.state;
 
         return (
             <PrivateContainer showTabs active="trip" showBack={true}>
@@ -168,12 +179,11 @@ class TripsCreate extends Component {
                                     }}
 
                                     filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-                                    // predefinedPlaces={[homePlace, workPlace]}
+                                    predefinedPlaces={[homePlace, workPlace]}
                                     debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
                                 // renderLeftButton={() => <Text>LEFT</Text>}
                                 // renderRightButton={() => <Text>Custom text after the input</Text>}
                                 />
-
                                 <Icon name='home' type="AntDesign" />
                             </Item>
                             <Item style={styles.inputItem}>
@@ -232,7 +242,7 @@ class TripsCreate extends Component {
                                     }}
 
                                     filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-                                    // predefinedPlaces={[homePlace, workPlace]}
+                                    predefinedPlaces={[homePlace, workPlace]}
                                     debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
                                 // renderLeftButton={() => <Text>LEFT</Text>}
                                 // renderRightButton={() => <Text>Custom text after the input</Text>}
@@ -350,7 +360,7 @@ const styles = StyleSheet.create({
     },
 
     checkbox: { marginLeft: -25 },
-    checkboxIos: { width: 10,  },
+    checkboxIos: { width: 10, },
 
     formContainer: {
         paddingHorizontal: 30,

@@ -7,6 +7,7 @@ import Carousel from 'react-native-snap-carousel';
 
 import PrivateContainer from "../../../layouts/PrivateContainer";
 import ButtonLoader from "../../../components/ButtonLoader";
+import { Actions } from 'react-native-router-flux';
 
 
 class TripsDetails extends Component {
@@ -15,15 +16,8 @@ class TripsDetails extends Component {
         super(props);
 
         this.state = {
+            contentLoader: true,
             loading: false,
-        };
-
-        this._carousel = {};
-        this.init();
-    }
-
-    init() {
-        this.state = {
             videos: [
                 {
                     id: "WpIAc9by5iU",
@@ -58,16 +52,29 @@ class TripsDetails extends Component {
             ]
         };
 
-        console.log("ThumbnailCarousel Props: ", this.props)
+        this._carousel = {};
+    }
 
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({ contentLoader: false });
+        }, 200);
     }
 
     handleSnapToItem(index) {
-        console.log("snapped to ", index)
+
+    }
+
+    loadCheck = () => {
+        this.setState({ loading: true });
+        setTimeout(() => {
+            Actions.tripsLoadCheck();
+            this.setState({ loading: false });
+        }, 300);
+
     }
 
     _renderItem = ({ item, index }) => {
-        console.log("rendering,", index, item)
         return (
             <View style={{ justifyContent: 'center', alignItems: 'center', width: 256, height: 200, }}>
                 <View
@@ -85,10 +92,10 @@ class TripsDetails extends Component {
 
     render() {
 
-        const { loading } = this.state;
+        const { loading, contentLoader } = this.state;
 
         return (
-            <PrivateContainer showTabs active="trip" showBack={true}>
+            <PrivateContainer showTabs active="trip" showBack={true} contentLoader={contentLoader}>
                 <Content>
 
                     <MapView
@@ -153,7 +160,7 @@ class TripsDetails extends Component {
 
                         <View style={styles.actionContainerRight}>
                             <ButtonLoader
-                                loading={loading}
+                                loading={false}
                                 onPress={this.next}
                                 style={styles.buttonRemove}
                                 textStyle={styles.buttonText} title="Remove" />
@@ -162,10 +169,11 @@ class TripsDetails extends Component {
 
                 </Content>
                 <ButtonLoader
+                    onPress={this.loadCheck}
                     loading={loading}
-                    onPress={this.next}
+                    // onPress={this.next}
                     style={styles.button}
-                    textStyle={styles.buttonText} title="Next" />
+                    textStyle={styles.buttonText} title="Load Check" />
             </PrivateContainer>
         );
     }
