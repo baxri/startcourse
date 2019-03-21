@@ -20,8 +20,8 @@ export default class Sidebar extends Component {
                 </View>
                 <View style={styles.menuContainer}>
                     <Button iconLeft transparent style={styles.menuItems} onPress={() => Actions.private()}>
-                        <Icon name='home' type="AntDesign" style={styles.menuItemsIconActive} />
-                        <Text uppercase={false} style={styles.menuItemsTextActive}>Home</Text>
+                        <Icon name='home' type="AntDesign" style={styles.menuItems} />
+                        <Text uppercase={false} style={styles.menuItemsText}>Home</Text>
                     </Button>
                     <Button iconLeft transparent style={styles.menuItems} onPress={() => { Actions.main(); }}>
                         <Icon name='user' type="SimpleLineIcons" style={styles.menuItemsIcon} />
