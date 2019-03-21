@@ -112,7 +112,7 @@ class TripsLoadCheck extends Component {
                             <ButtonLoader
                                 loading={false}
                                 style={styles.buttonRemove}
-                                textStyle={styles.buttonText} title="Delete" />
+                                textStyle={styles.buttonTextRemove} title="Delete" />
                         </View>
                         <View style={styles.cardRight}>
                             <Text style={styles.label}>length</Text>
@@ -234,6 +234,13 @@ const styles = StyleSheet.create({
     },
 
     buttonText: {
+        color: 'white',
+        fontSize: 18,
+        fontWeight: 'bold',
+        alignSelf: 'center',
+    },
+
+    buttonTextRemove: {
         color: 'white',
         fontSize: 15,
         alignSelf: 'center',

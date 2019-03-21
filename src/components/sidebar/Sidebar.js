@@ -27,9 +27,9 @@ export default class Sidebar extends Component {
                         <Icon name='user' type="SimpleLineIcons" style={styles.menuItemsIcon} />
                         <Text uppercase={false} style={styles.menuItemsText}>Profile</Text>
                     </Button>
-                    <Button iconLeft transparent style={styles.menuItems} onPress={() => { Actions.setup(); }}>
+                    <Button iconLeft transparent style={styles.menuItems} onPress={() => { Actions.tripsHistory(); }}>
                         <Icon name='settings' type="SimpleLineIcons" style={styles.menuItemsIcon} />
-                        <Text uppercase={false} style={styles.menuItemsText}>Settings</Text>
+                        <Text uppercase={false} style={styles.menuItemsText}>History</Text>
                     </Button>
                     <Button iconLeft transparent style={styles.menuItems}>
                         <Icon name='help-circle' type="Feather" style={styles.menuItemsIcon} />

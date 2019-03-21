@@ -2,6 +2,7 @@ import React from 'react';
 import { Footer, FooterTab, Icon, Text } from 'native-base';
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { Actions } from "react-native-router-flux";
+import Ripple from 'react-native-material-ripple';
 
 export default ({ active }) => {
     return (

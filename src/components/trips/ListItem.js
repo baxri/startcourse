@@ -3,11 +3,11 @@ import { StyleSheet, View, Platform } from 'react-native'
 import { Button, Icon, ListItem, Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
-export default function ListViewItem({ item }) {
+export default function ListViewItem({ item, history }) {
     return (
-        <ListItem style={styles.listitem}>
-            <View style={styles.header}>
-                <Text style={{ color: '#6c7a89' }}>March 15</Text>
+        <ListItem style={history ? styles.listitemHistory : styles.listitem}>
+            <View style={[history ? styles.headerHistory : styles.header, (history ? { backgroundColor: item.color } : {})]} >
+                <Text style={[history ? { color: '#fff' } : { color: '#6c7a89' }]}>March 15 {history ? " - Shipemnt name" : ""}</Text>
             </View>
             <View style={styles.body}>
 
@@ -40,15 +40,15 @@ export default function ListViewItem({ item }) {
                     </View>
                 </View>
 
-                <View style={styles.details}>
+                {!history && <View style={styles.details}>
                     <Button primary iconRight style={styles.detailsButton} onPress={() => Actions.tripsDetails()}>
                         <Text>Details</Text>
                         <Icon name='arrow-forward' />
                     </Button>
-                </View>
+                </View>}
 
             </View>
-        </ListItem>
+        </ListItem >
 
     )
 }
@@ -149,6 +149,23 @@ const styles = StyleSheet.create({
         paddingBottom: -15,
     },
 
+    listitemHistory: {
+        elevation: 1,
+        borderRadius: 10,
+        flex: 1,
+        flexDirection: 'column',
+        height: 240,
+
+        marginLeft: 15,
+        marginRight: 15,
+        marginTop: 20,
+        marginBottom: 15,
+
+        paddingRight: -20,
+        paddingTop: -15,
+        paddingBottom: -15,
+    },
+
 
     header: {
         flexDirection: 'row',
@@ -156,6 +173,16 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 10,
         width: '100%',
         height: 50,
+        backgroundColor: '#e8e8e8',
+        paddingLeft: 15,
+    },
+
+    headerHistory: {
+        flexDirection: 'row',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        width: '100%',
+        height: 40,
         backgroundColor: '#e8e8e8',
         paddingLeft: 15,
     },

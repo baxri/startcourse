@@ -23,7 +23,8 @@ const initialState = {
       to: '200, North St, Columbus, OH 43215',
       dest: 'USA',
       status: 'Planed',
-      dates: '08/16/2019-09/14/2019'
+      dates: '08/16/2019-09/14/2019',
+      color: '#f5e51b',
     },
     {
       home: '3000, Notrh St, Columbus OH, 43219',
@@ -31,7 +32,8 @@ const initialState = {
       to: '200, North St, Columbus, OH 43215',
       dest: 'USA',
       status: 'Planed',
-      dates: '08/16/2019-09/14/2019'
+      dates: '08/16/2019-09/14/2019',
+      color: '#2ecc71',
     },
     {
       home: '3000, Notrh St, Columbus OH, 43219',
@@ -39,7 +41,8 @@ const initialState = {
       to: '200, North St, Columbus, OH 43215',
       dest: 'USA',
       status: 'Planed',
-      dates: '08/16/2019-09/14/2019'
+      dates: '08/16/2019-09/14/2019',
+      color: '#f5ab35',
     }
   ],
 };
