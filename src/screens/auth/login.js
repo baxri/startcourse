@@ -59,14 +59,24 @@ class login extends Component {
                 username, password
             }
 
+            let role = 'Visitor';
+
+            if (username.toLowerCase() == 'admin') {
+                role = 'Admin';
+            }
+
+            if (username.toLowerCase() == 'Carrier') {
+                role = 'Carrier';
+            }
+
             setAccessToken({
                 expires_in: '23492374398743',
-                role: 'Visitor',
+                role: role,
                 token: 'H)D)*HD)SH)(*SDH)F*HSDFDSDISIUSDHSDHFIUSDHF&*F(D&*S^FDF'
             });
 
             setUser(user);
-            
+
             Actions.reset('auth');
             Actions.private();
 

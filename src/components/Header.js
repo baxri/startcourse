@@ -2,26 +2,29 @@ import React from 'react';
 import { Icon, Text } from 'native-base';
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import { Actions, Drawer } from "react-native-router-flux";
+import Ripple from 'react-native-material-ripple';
+
 
 function Header({ title, openDrawer, showBack }) {
     return (
         <View style={styles.header}>
 
-            {!showBack && <TouchableOpacity onPress={() => { Actions.drawerOpen() }}>
+            {!showBack && <Ripple rippleOpacity={0.1} style={styles.headerButton} onPress={() => { Actions.drawerOpen() }}>
                 <Icon name="menu" type="Feather" style={{ color: '#19b5fe' }} />
-            </TouchableOpacity>}
+            </Ripple>}
 
-            {showBack && <TouchableOpacity onPress={() => Actions.pop()}>
+            {showBack && <Ripple rippleOpacity={0.1} style={styles.headerButton} onPress={() => Actions.pop()}>
                 <Icon name="arrowleft" type="AntDesign" style={{ color: '#19b5fe' }} />
-            </TouchableOpacity>}
+            </Ripple>}
 
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row', borderWidth: 0, alignItems: 'center' }}>
+                <Icon name="star" type="FontAwesome" style={{ color: '#19b5fe', marginRight: 5, }} />
                 <Text style={[styles.text, { color: '#19b5fe' }]}>Star</Text><Text style={styles.text}>Course</Text>
             </View>
 
-            <TouchableOpacity onPress={() => Actions.auth()}>
+            <Ripple onPress={() => Actions.auth()} rippleOpacity={0.1} style={styles.headerButton}>
                 <Icon name="logout" type="AntDesign" style={{ color: '#19b5fe' }} />
-            </TouchableOpacity>
+            </Ripple>
         </View>
     )
 }
@@ -29,10 +32,20 @@ function Header({ title, openDrawer, showBack }) {
 export default Header;
 
 const styles = StyleSheet.create({
+
+    headerButton: {
+        // borderWidth: 1,
+        height: 50,
+        width: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
     header: {
-        paddingTop: 40,
-        paddingBottom: 10,
-        paddingHorizontal: 15,
+        marginTop: 25,
+        // paddingTop: 40,
+        // paddingBottom: 10,
+        // paddingHorizontal: 15,
         flexDirection: 'row',
         alignContent: 'center',
         justifyContent: 'space-between',

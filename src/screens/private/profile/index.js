@@ -3,7 +3,6 @@ import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import { connect } from "react-redux";
 import { Text, Thumbnail, Button, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-
 import PrivateContainer from "../../../layouts/PrivateContainer";
 
 class ProfileIndex extends Component {

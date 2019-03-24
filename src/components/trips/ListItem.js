@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, View, Platform } from 'react-native'
 import { Button, Icon, ListItem, Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import Ripple from 'react-native-material-ripple';
 
 export default function ListViewItem({ item, history }) {
     return (

@@ -88,20 +88,13 @@ export default class App extends React.Component {
                 <RouterWithRedux>
                     <Scene key="root">
 
-                        {/* Login Stack */}
-                        <Stack key="auth" type="reset" hideNavBar={true}>
-                            <Scene key="login" initial component={login} title="login" />
-                            <Scene key="register" component={register} title="register" />
-                            <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
-                        </Stack>
-
-                         {/* Authorized Private Stack */}
-                         <Scene drawer={true} contentComponent={DrawerContent} key="private" type="reset" hideNavBar={true}>
-                            <Scene key="tabs" tabs  hideNavBar hideTabBar={true}>
+                        {/* Authorized Private Stack */}
+                        <Scene drawer={true} drawerOpen={true} contentComponent={DrawerContent} key="private" type="reset" hideNavBar={true}>
+                            <Scene key="tabs" tabs hideNavBar hideTabBar={true}>
                                 <Scene key="home" component={homeIndex} title="home" hideNavBar icon={TabIcon} />
                                 <Scene key="trips" tabs hideNavBar initial>
-                                    <Scene key="tripsList"  initial component={tripsIndex} hideNavBar hideTabBar />
-                                    <Scene key="tripsCreate"  component={tripsCreate} hideNavBar hideTabBar />
+                                    <Scene key="tripsList" initial component={tripsIndex} hideNavBar hideTabBar />
+                                    <Scene key="tripsCreate" component={tripsCreate} hideNavBar hideTabBar />
                                     <Scene key="tripsDetails" component={tripsDetails} hideNavBar hideTabBar />
                                     <Scene key="tripsLoadCheck" component={tripsLoadCheck} hideNavBar hideTabBar />
                                 </Scene>
@@ -115,8 +108,12 @@ export default class App extends React.Component {
                             </Scene>
                         </Scene>
 
-                        
-                       
+                        {/* Login Stack */}
+                        <Stack key="auth" type="reset" hideNavBar={true}>
+                            <Scene key="login" initial component={login} title="login" />
+                            <Scene key="register" component={register} title="register" />
+                            <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
+                        </Stack>
 
                     </Scene>
                 </RouterWithRedux>
