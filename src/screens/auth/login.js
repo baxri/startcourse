@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, KeyboardAvoidingView } from 'react-native'
-import { Image, ImageBackground, Alert } from 'react-native';
+import { Image, ImageBackground, Alert, Animated } from 'react-native';
 import PublicContainer from "../../layouts/PublicContainer";
 import { Content, Item, Input, Icon, Button, Text } from 'native-base';
 import { Actions } from "react-native-router-flux";
@@ -22,6 +22,8 @@ class login extends Component {
             username: '',
             password: '',
             loading: false,
+
+            fadeIn: new Animated.Value(0),
         }
     }
 
@@ -65,17 +67,35 @@ class login extends Component {
             Actions.private();
 
         }, 600);
+    }
 
+    componentDidMount() {
+        Animated.stagger(100, [
+            Animated.spring(this.state.fadeIn, {
+                toValue: 1,
+                duration: 2000,
+                useNativeDriver: true,
+            })
+        ]).start();
     }
 
     render() {
+        const fadeIn = {
+            opacity: this.state.fadeIn,
+            transform: [{
+                translateY: this.state.fadeIn.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [-20, 0]
+                }),
+            }]
+        }
 
         const { username, password, loading } = this.state;
         return (
             <PublicContainer showTabs={true} active="home">
-                <Header />
-                <View style={styles.formContainer}>
-                    <Item style={styles.inputItem}>
+                <Header fadeIn={fadeIn} />
+                <Animated.View style={[styles.formContainer, fadeIn]} >
+                    <Item style={[styles.inputItem,]}>
                         <Icon active name='user' type="SimpleLineIcons" />
                         <Input placeholder='Email Address' style={styles.input} value={username}
                             onChangeText={(val) => this.handleChange('username', val)} />
@@ -100,9 +120,9 @@ class login extends Component {
                     <Button transparent info block style={{ marginTop: 40, }} onPress={() => Actions.forgotpassword()}>
                         <Text uppercase={false} style={styles.buttonTextBlue}>Forgot Password?</Text>
                     </Button>
-                </View>
+                </Animated.View>
             </PublicContainer>
-            
+
         )
     }
 }

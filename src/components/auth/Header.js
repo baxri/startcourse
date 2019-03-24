@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, ImageBackground, Image } from "react-native";
+import { StyleSheet, View, ImageBackground, Image, Animated } from "react-native";
 import { Text } from 'native-base';
 
-function Header({ type, title }) {
+function Header({ type, title, fadeIn }) {
     return (
-        <View style={styles.logoContainer}>
+        <Animated.View style={[styles.logoContainer, fadeIn]}>
             {title && <Text style={styles.header}>{title}</Text>}
             {!title && <Image style={styles.image} fadeDuration={0} source={require('../../../assets/login.png')} ></Image>}
-        </View>
+        </Animated.View>
     )
 }
 

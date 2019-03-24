@@ -95,25 +95,28 @@ export default class App extends React.Component {
                             <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
                         </Stack>
 
-                        {/* Authorized Private Stack */}
-                        <Scene drawer={true} contentComponent={DrawerContent} key="private" type="reset" hideNavBar={true}>
-                            <Scene key="tabs" tabs initial hideNavBar hideTabBar={true}>
+                         {/* Authorized Private Stack */}
+                         <Scene drawer={true} contentComponent={DrawerContent} key="private" type="reset" hideNavBar={true}>
+                            <Scene key="tabs" tabs  hideNavBar hideTabBar={true}>
                                 <Scene key="home" component={homeIndex} title="home" hideNavBar icon={TabIcon} />
-                                <Scene key="trips" tabs hideNavBar>
-                                    <Scene key="tripsList" initial component={tripsIndex} hideNavBar hideTabBar />
-                                    <Scene key="tripsCreate" component={tripsCreate} hideNavBar hideTabBar />
+                                <Scene key="trips" tabs hideNavBar initial>
+                                    <Scene key="tripsList"  initial component={tripsIndex} hideNavBar hideTabBar />
+                                    <Scene key="tripsCreate"  component={tripsCreate} hideNavBar hideTabBar />
                                     <Scene key="tripsDetails" component={tripsDetails} hideNavBar hideTabBar />
                                     <Scene key="tripsLoadCheck" component={tripsLoadCheck} hideNavBar hideTabBar />
                                 </Scene>
                                 <Scene key="bids" component={bidsIndex} title="bids" hideNavBar icon={TabIcon} />
                                 <Scene key="setup" component={setupIndex} title="setup" hideNavBar icon={TabIcon} />
 
-                                <Scene key="tripsHistory" component={tripsHistory} hideNavBar />
+                                <Scene key="tripsHistory" component={tripsHistory} hideNavBar hideTabBar />
                             </Scene>
                             <Scene key="main" hideNavBar hideTabBar>
                                 <Scene key="profile" component={ProfileIndex} title="profile" hideNavBar />
                             </Scene>
                         </Scene>
+
+                        
+                       
 
                     </Scene>
                 </RouterWithRedux>
