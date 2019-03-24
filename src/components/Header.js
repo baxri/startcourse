@@ -34,7 +34,7 @@ export default Header;
 const styles = StyleSheet.create({
 
     headerButton: {
-        // borderWidth: 1,
+        borderWidth: 0,
         height: 50,
         width: 60,
         alignItems: 'center',
@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
     },
 
     header: {
-        marginTop: 25,
+        borderWidth: 0,
+        marginTop: 33,
         // paddingTop: 40,
         // paddingBottom: 10,
         // paddingHorizontal: 15,
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.2,
         borderBottomColor: '#bdc3c7',
         backgroundColor: 'white',
-        elevation: 1,
+        // elevation: 1,
     },
 
     text: {
