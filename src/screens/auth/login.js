@@ -54,15 +54,19 @@ class login extends Component {
 
         this.setState({ loading: true });
 
-
         setTimeout(() => {
             let user = {
                 username, password
             }
 
-            setAccessToken('H)D)*HD)SH)(*SDH)F*HSDFDSDISIUSDHSDHFIUSDHF&*F(D&*S^FDF');
-            setUser(user);
+            setAccessToken({
+                expires_in: '23492374398743',
+                role: 'Visitor',
+                token: 'H)D)*HD)SH)(*SDH)F*HSDFDSDISIUSDHSDHFIUSDHF&*F(D&*S^FDF'
+            });
 
+            setUser(user);
+            
             Actions.reset('auth');
             Actions.private();
 

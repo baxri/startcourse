@@ -17,7 +17,7 @@ const schema = {
 const initialState = {
   schema: schema,
   expires_in: null,
-  role: null,
+  role: 'Visitor',
   token: null,
   user: null,
 };
@@ -28,11 +28,12 @@ export default function reducer(state = initialState, action = {}) {
     case actionTypes.SET_ACCESS_TOKEN:
       return {
         ...state,
-        token: action.payload,
+        expires_in: action.payload.expires_in,
+        role: action.payload.role,
+        token: action.payload.token,
       };
     case actionTypes.SET_USER:
       return {
-
         ...state,
         user: action.payload,
       };

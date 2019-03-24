@@ -7,12 +7,12 @@ import PrivateContainer from "../../../layouts/PrivateContainer";
 class setupIndex extends Component {
     render() {
 
-        const { token } = this.props;
+        const { token, role } = this.props;
 
         return (
             <PrivateContainer showTabs active="setup">
                 <Text>
-                    {token}
+                    {role}
                 </Text>
                 <Text>SETUP</Text>
             </PrivateContainer>
@@ -23,6 +23,7 @@ class setupIndex extends Component {
 const mapStateToProps = (state) => {
     return {
         token: state.auth.token,
+        role: state.auth.role,
     }
 }
 
