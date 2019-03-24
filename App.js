@@ -26,6 +26,7 @@ import setupIndex from "./src/screens/private/setup";
 import ProfileIndex from "./src/screens/private/profile";
 
 import DrawerContent from "./src/components/sidebar/Sidebar";
+import TabBar from "./src/components/TabBar";
 
 const TabIcon = ({ selected, title }) => {
     return (
@@ -90,13 +91,13 @@ export default class App extends React.Component {
 
                         {/* Authorized Private Stack */}
                         <Scene drawer={true} drawerOpen={true} contentComponent={DrawerContent} key="private" type="reset" hideNavBar={true}>
-                            <Scene key="tabs" tabs hideNavBar hideTabBar={true}>
-                                <Scene key="home" component={homeIndex} title="home" hideNavBar icon={TabIcon} />
-                                <Scene key="trips" tabs hideNavBar initial>
-                                    <Scene key="tripsList" initial component={tripsIndex} hideNavBar hideTabBar />
-                                    <Scene key="tripsCreate" component={tripsCreate} hideNavBar hideTabBar />
-                                    <Scene key="tripsDetails" component={tripsDetails} hideNavBar hideTabBar />
-                                    <Scene key="tripsLoadCheck" component={tripsLoadCheck} hideNavBar hideTabBar />
+                            <Scene key="tabs" tabs hideNavBar hideTabBar={true} tabBarComponent={TabBar}>
+                                <Scene key="home" initial component={homeIndex} title="home" hideNavBar icon={TabIcon} />
+                                <Scene key="trips" tabs hideNavBar initial hideTabBar={true}>
+                                    <Scene key="tripsList" component={tripsIndex} hideNavBar />
+                                    <Scene key="tripsCreate" component={tripsCreate} hideNavBar />
+                                    <Scene key="tripsDetails" component={tripsDetails} hideNavBar />
+                                    <Scene key="tripsLoadCheck" component={tripsLoadCheck} hideNavBar />
                                 </Scene>
                                 <Scene key="bids" component={bidsIndex} title="bids" hideNavBar icon={TabIcon} />
                                 <Scene key="setup" component={setupIndex} title="setup" hideNavBar icon={TabIcon} />
@@ -114,6 +115,7 @@ export default class App extends React.Component {
                             <Scene key="register" component={register} title="register" />
                             <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
                         </Stack>
+
 
                     </Scene>
                 </RouterWithRedux>
