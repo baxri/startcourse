@@ -13,7 +13,6 @@ class Sidebar extends Component {
 
         let Image_Http_URL = { uri: 'https://experience.sap.com/fiori-design-web/wp-content/uploads/sites/5/2017/02/Avatar-Sizes-Custom-1.png' };
 
-        
         return (
             <View style={styles.container}>
                 <View style={styles.avatarContainer}>

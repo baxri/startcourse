@@ -89,11 +89,19 @@ export default class App extends React.Component {
                 <RouterWithRedux>
                     <Scene key="root">
 
+
+                        {/* Login Stack */}
+                        <Stack key="auth" type="reset" hideNavBar={true}>
+                            <Scene key="login" initial component={login} title="login" />
+                            <Scene key="register" component={register} title="register" />
+                            <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
+                        </Stack>
+
                         {/* Authorized Private Stack */}
                         <Scene drawer={true} drawerOpen={true} contentComponent={DrawerContent} key="private" type="reset" hideNavBar={true}>
                             <Scene key="tabs" tabs hideNavBar hideTabBar={true} tabBarComponent={TabBar}>
                                 <Scene key="home" initial component={homeIndex} title="home" hideNavBar icon={TabIcon} />
-                                <Scene key="trips" tabs hideNavBar initial hideTabBar={true}>
+                                <Scene key="trips" tabs hideNavBar hideTabBar={true}>
                                     <Scene key="tripsList" component={tripsIndex} hideNavBar />
                                     <Scene key="tripsCreate" component={tripsCreate} hideNavBar />
                                     <Scene key="tripsDetails" component={tripsDetails} hideNavBar />
@@ -108,13 +116,6 @@ export default class App extends React.Component {
                                 <Scene key="profile" component={ProfileIndex} title="profile" hideNavBar />
                             </Scene>
                         </Scene>
-
-                        {/* Login Stack */}
-                        <Stack key="auth" type="reset" hideNavBar={true}>
-                            <Scene key="login" initial component={login} title="login" />
-                            <Scene key="register" component={register} title="register" />
-                            <Scene key="forgotpassword" component={forgotpassword} title="forgotpassword" />
-                        </Stack>
 
 
                     </Scene>
